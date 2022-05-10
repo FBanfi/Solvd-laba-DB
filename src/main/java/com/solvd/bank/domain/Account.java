@@ -3,6 +3,7 @@ package com.solvd.bank.domain;
 import java.util.List;
 
 public class Account {
+    private long id;
     private double balance;
     private double cbu;
     private String alias;
@@ -16,4 +17,18 @@ public class Account {
     private List<Card> cards;
     private List<Subscription> subscriptions;
 
+    public Account() {
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public Double getBalance() {
+        return this.balance;
+    }
 }
