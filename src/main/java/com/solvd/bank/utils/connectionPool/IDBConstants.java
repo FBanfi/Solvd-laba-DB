@@ -1,4 +1,4 @@
-package com.solvd.bank.domain.connectionPool;
+package com.solvd.bank.utils.connectionPool;
 
 public interface IDBConstants {
     String URL = "db.url";

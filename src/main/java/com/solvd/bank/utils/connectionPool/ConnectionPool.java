@@ -1,4 +1,4 @@
-package com.solvd.bank.domain.connectionPool;
+package com.solvd.bank.utils.connectionPool;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package com.solvd.bank.domain.jaxb;
+package com.solvd.bank.utils.jaxb;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.SimpleDateFormat;

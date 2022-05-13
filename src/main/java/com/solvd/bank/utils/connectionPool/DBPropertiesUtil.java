@@ -1,4 +1,4 @@
-package com.solvd.bank.domain.connectionPool;
+package com.solvd.bank.utils.connectionPool;
 
 import java.io.File;
 import java.io.FileReader;

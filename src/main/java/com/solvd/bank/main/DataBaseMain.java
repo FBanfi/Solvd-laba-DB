@@ -1,7 +1,7 @@
 package com.solvd.bank.main;
 
 import com.solvd.bank.domain.Account;
-import com.solvd.bank.domain.jaxb.Manager;
+import com.solvd.bank.domain.Manager;
 import com.solvd.bank.service.AccountService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

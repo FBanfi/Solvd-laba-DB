@@ -1,4 +1,4 @@
-package com.solvd.bank.domain.connectionPool;
+package com.solvd.bank.utils.connectionPool;
 
 public class ConnectionException extends RuntimeException {
     public ConnectionException(String message){

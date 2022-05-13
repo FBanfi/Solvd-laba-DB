@@ -2,8 +2,7 @@ package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.IAccountDAO;
 import com.solvd.bank.domain.Account;
-import com.solvd.bank.domain.connectionPool.ConnectionPool;
-import com.solvd.bank.main.DataBaseMain;
+import com.solvd.bank.utils.connectionPool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
