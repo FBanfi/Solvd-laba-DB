@@ -1,34 +1,36 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
-import com.solvd.bank.dao.IAccountDAO;
+import com.solvd.bank.dao.IPhoneDAO;
 import com.solvd.bank.domain.Account;
-import com.solvd.bank.utils.connectionPool.ConnectionPool;
+import com.solvd.bank.domain.Phone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class AccountDAO extends AbstractDAO implements IAccountDAO {
-    private final static Logger LOGGER = LogManager.getLogger(AccountDAO.class);
-    private final static String SELECT_BALANCE_BY_ACCOUNT_ID = "SELECT * FROM Accounts WHERE idAccounts=?";
+public class PhoneDAO extends AbstractDAO implements IPhoneDAO {
+    private final static Logger LOGGER = LogManager.getLogger(PhoneDAO.class);
+    private final static String SELECT_INFO_BY_PHONE_ID = "SELECT * FROM Phones WHERE idPhones=?";
 
     @Override
-    public Account getEntityById(long id) throws SQLException, ClassNotFoundException {
+    public Phone getEntityById(long id) throws IOException, SQLException, ClassNotFoundException {
         PreparedStatement pr = null;
         ResultSet rs = null;
         Connection con = getConnection();
         try {
-            pr = con.prepareStatement(SELECT_BALANCE_BY_ACCOUNT_ID);
+            pr = con.prepareStatement(SELECT_INFO_BY_PHONE_ID);
             pr.setLong(1, id);
             rs = pr.executeQuery();
-            Account account = new Account();
+            Phone phone = new Phone();
             rs.next();
-            account.setId(Integer.parseInt(rs.getString("idAccounts")));
-            account.setBalance(Double.parseDouble(rs.getString("balance")));
-            account.setAlias(rs.getString("alias"));
-            account.setCbu(Double.parseDouble(rs.getString("cbu")));
+            phone.setId(Integer.parseInt(rs.getString("idPhones")));
+            phone.setNumber(Integer.parseInt(rs.getString("number")));
 
-            return account;
+            return phone;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
         }
@@ -49,12 +51,12 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     }
 
     @Override
-    public void saveEntity(Account entity) {
+    public void saveEntity(Phone entity) {
 
     }
 
     @Override
-    public void updateEntity(Account entity) {
+    public void updateEntity(Phone entity) {
 
     }
 

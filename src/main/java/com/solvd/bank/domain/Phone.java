@@ -4,12 +4,16 @@ import java.util.Objects;
 
 public class Phone {
     private long id;
-    private double number;
+    private int number;
     private Client client;
 
-    public Phone(double number, Client client) {
+    public Phone(int number, Client client) {
         this.number = number;
         this.client = client;
+    }
+
+    public Phone() {
+
     }
 
     @Override
@@ -46,11 +50,11 @@ public class Phone {
         this.id = id;
     }
 
-    public double getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(double number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

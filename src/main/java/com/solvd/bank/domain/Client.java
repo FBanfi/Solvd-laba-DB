@@ -8,13 +8,13 @@ public class Client {
     private long id;
     private String name;
     private String lastName;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private double document;
     private String email;
     private Phone phone;
     private Account account;
 
-    public Client(String name, String lastName, LocalDate dateOfBirth, double document,
+    public Client(String name, String lastName, String dateOfBirth, double document,
                   String email, Phone phone, Account account) {
         this.name = name;
         this.lastName = lastName;
@@ -94,12 +94,12 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = LocalDate.parse(dateOfBirth);
+        this.dateOfBirth = dateOfBirth;
     }
 
     public double getDocument() {

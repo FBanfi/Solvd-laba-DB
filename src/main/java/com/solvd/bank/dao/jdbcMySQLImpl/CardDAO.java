@@ -1,7 +1,7 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
-import com.solvd.bank.dao.IClientDAO;
-import com.solvd.bank.domain.Client;
+import com.solvd.bank.dao.ICardDAO;
+import com.solvd.bank.domain.Card;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,27 +10,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientDAO extends AbstractDAO implements IClientDAO {
-    private final static Logger LOGGER = LogManager.getLogger(ClientDAO.class);
-    private final static String SELECT_NAME_BY_CLIENT_ID = "SELECT * FROM Clients JOIN Managers JOIN Accounts ON account_id=?";
+public class CardDAO extends AbstractDAO implements ICardDAO {
+    private final static Logger LOGGER = LogManager.getLogger(CardDAO.class);
+    private final static String SELECT_INFO_BY_ACCOUNT_ID = "SELECT * FROM Cards JOIN Accounts WHERE account_id=?";
 
     @Override
-    public Client getEntityById(long id) throws SQLException, ClassNotFoundException {
+    public Card getEntityById(long id) throws SQLException, ClassNotFoundException {
         PreparedStatement pr = null;
         ResultSet rs = null;
         Connection con = getConnection();
         try {
-            pr = con.prepareStatement(SELECT_NAME_BY_CLIENT_ID);
+            pr = con.prepareStatement(SELECT_INFO_BY_ACCOUNT_ID);
             pr.setLong(1, id);
             rs = pr.executeQuery();
-            Client client = new Client();
+            Card card = new Card();
             rs.next();
-            client.setId(Integer.parseInt(rs.getString("idClients")));
-            client.setName(rs.getString("name"));
-            client.setLastName(rs.getString("last_name"));
-            client.setDateOfBirth(rs.getString("date_of_birth"));
+            card.setId(Integer.parseInt(rs.getString("idCards")));
+            card.setNumber(Double.parseDouble(rs.getString("number")));
 
-            return client;
+            return card;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
         }
@@ -51,12 +49,12 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     }
 
     @Override
-    public void saveEntity(Client entity) {
+    public void saveEntity(Card entity) {
 
     }
 
     @Override
-    public void updateEntity(Client entity) {
+    public void updateEntity(Card entity) {
 
     }
 

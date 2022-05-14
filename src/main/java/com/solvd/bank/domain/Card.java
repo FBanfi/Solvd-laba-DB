@@ -12,6 +12,10 @@ public class Card {
         this.account = account;
     }
 
+    public Card() {
+
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

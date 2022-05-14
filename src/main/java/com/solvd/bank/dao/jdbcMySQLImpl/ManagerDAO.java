@@ -1,36 +1,37 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
-import com.solvd.bank.dao.IClientDAO;
+import com.solvd.bank.dao.IManagerDAO;
 import com.solvd.bank.domain.Client;
+import com.solvd.bank.domain.Manager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientDAO extends AbstractDAO implements IClientDAO {
-    private final static Logger LOGGER = LogManager.getLogger(ClientDAO.class);
-    private final static String SELECT_NAME_BY_CLIENT_ID = "SELECT * FROM Clients JOIN Managers JOIN Accounts ON account_id=?";
+public class ManagerDAO extends AbstractDAO implements IManagerDAO {
+    private final static Logger LOGGER = LogManager.getLogger(ManagerDAO.class);
+    private final static String SELECT_INFO_BY_MANAGER_ID = "SELECT * FROM Managers LEFT JOIN Phones ON idManagers=?";
 
     @Override
-    public Client getEntityById(long id) throws SQLException, ClassNotFoundException {
+    public Manager getEntityById(long id) throws IOException, SQLException, ClassNotFoundException {
         PreparedStatement pr = null;
         ResultSet rs = null;
         Connection con = getConnection();
         try {
-            pr = con.prepareStatement(SELECT_NAME_BY_CLIENT_ID);
+            pr = con.prepareStatement(SELECT_INFO_BY_MANAGER_ID);
             pr.setLong(1, id);
             rs = pr.executeQuery();
-            Client client = new Client();
+            Manager manager = new Manager();
             rs.next();
-            client.setId(Integer.parseInt(rs.getString("idClients")));
-            client.setName(rs.getString("name"));
-            client.setLastName(rs.getString("last_name"));
-            client.setDateOfBirth(rs.getString("date_of_birth"));
+            manager.setId(Integer.parseInt(rs.getString("idManagers")));
+            manager.setName(rs.getString("name"));
+            manager.setLastName(rs.getString("last_name"));
 
-            return client;
+            return manager;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
         }
@@ -51,12 +52,12 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     }
 
     @Override
-    public void saveEntity(Client entity) {
+    public void saveEntity(Manager entity) {
 
     }
 
     @Override
-    public void updateEntity(Client entity) {
+    public void updateEntity(Manager entity) {
 
     }
 
