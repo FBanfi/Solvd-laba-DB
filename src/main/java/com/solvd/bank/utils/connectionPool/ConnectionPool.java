@@ -10,17 +10,23 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class ConnectionPool {
-    private final static ConnectionPool INSTANCE = new ConnectionPool();
     private BlockingQueue<Connection> connections = new ArrayBlockingQueue<Connection>(5);
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private final static String URL = DBPropertiesUtil.getInstance().getString(IDBConstants.URL);
     private final static String USER_NAME = DBPropertiesUtil.getInstance().getString(IDBConstants.USER_NAME);
     private final static String PASSWORD = DBPropertiesUtil.getInstance().getString((IDBConstants.PASSWORD));
     private final static int MAX_CONNECTIONS = DBPropertiesUtil.getInstance().getInt(IDBConstants.MAX_CONNECTIONS);
+    private final static String DRIVER = DBPropertiesUtil.getInstance().getString(IDBConstants.DRIVER);
     private int createdConnections = 0;
+    private final static ConnectionPool INSTANCE = new ConnectionPool();
 
     private ConnectionPool(){
-
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            LOGGER.error("Driver was not loaded properly", e);
+            throw new RuntimeException(e);
+        }
     }
 
     public static ConnectionPool getInstance() {

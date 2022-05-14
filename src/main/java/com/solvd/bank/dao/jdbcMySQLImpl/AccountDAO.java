@@ -8,8 +8,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class AccountDAO implements IAccountDAO {
-    private static Logger LOGGER = LogManager.getLogger(AccountDAO.class);
+public class AccountDAO extends AbstractDAO implements IAccountDAO {
+    private final static Logger LOGGER = LogManager.getLogger(AccountDAO.class);
+    private final static String SELECT_BALANCE_BY_ACCOUNT_ID = "SELECT * FROM Accounts WHERE idAccounts=?";
 
     @Override
     public void getAccountByClientId() {
@@ -18,26 +19,35 @@ public class AccountDAO implements IAccountDAO {
 
     @Override
     public Account getEntityById(long id) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement pr = null;
         ResultSet rs = null;
-        try (Connection con = ConnectionPool.getInstance().getConnection()) {
-            pr = con.prepareStatement("SELECT balance FROM Accounts WHERE idAccounts=?");
+        Connection con = getConnection();
+        try {
+            pr = con.prepareStatement(SELECT_BALANCE_BY_ACCOUNT_ID);
             pr.setLong(1, id);
             rs = pr.executeQuery();
             Account account = new Account();
             rs.next();
+            account.setId(Integer.parseInt(rs.getString("idAccounts")));
             account.setBalance(Double.parseDouble(rs.getString("balance")));
+            account.setAlias(rs.getString("alias"));
+            account.setCbu(Double.parseDouble(rs.getString("cbu")));
 
-            pr.close();
-            rs.close();
             return account;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
         }
         finally {
-            pr.close();
-            rs.close();
+            returnConnection(con);
+            try {
+                if (pr != null)
+                    pr.close();
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException e) {
+                LOGGER.error("Exception while closing the statement", e);
+                throw new RuntimeException(e);
+            }
         }
 
         return null;

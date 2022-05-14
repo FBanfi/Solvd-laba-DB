@@ -1,5 +1,6 @@
 package com.solvd.bank.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,13 +8,13 @@ public class Client {
     private long id;
     private String name;
     private String lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private double document;
     private String email;
     private Phone phone;
     private Account account;
 
-    public Client(String name, String lastName, Date dateOfBirth, double document,
+    public Client(String name, String lastName, LocalDate dateOfBirth, double document,
                   String email, Phone phone, Account account) {
         this.name = name;
         this.lastName = lastName;
@@ -22,6 +23,10 @@ public class Client {
         this.email = email;
         this.phone = phone;
         this.account = account;
+    }
+
+    public Client() {
+
     }
 
     @Override
@@ -89,12 +94,12 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = LocalDate.parse(dateOfBirth);
     }
 
     public double getDocument() {

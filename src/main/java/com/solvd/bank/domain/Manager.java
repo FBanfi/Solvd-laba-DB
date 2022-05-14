@@ -41,6 +41,9 @@ public class Manager {
         this.password = password;
     }
 
+    public Manager() {
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

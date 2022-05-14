@@ -1,8 +1,8 @@
-package com.solvd.bank.service;
+package com.solvd.bank.services.jdbcImpl;
 
 import com.solvd.bank.domain.Client;
 
-public class ClientService {
+public class ClientServiceImpl {
 
     public Client getClient() {
         //TODO
