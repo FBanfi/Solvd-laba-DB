@@ -51,16 +51,16 @@ public class ManagerDAO extends AbstractDAO implements IManagerDAO {
 
     @Override
     public void saveEntity(Manager entity) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 
     @Override
     public void updateEntity(long id, Manager entity) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 
     @Override
     public void removeEntity(long id) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 }

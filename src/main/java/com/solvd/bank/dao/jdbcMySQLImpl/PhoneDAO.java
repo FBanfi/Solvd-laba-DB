@@ -50,16 +50,16 @@ public class PhoneDAO extends AbstractDAO implements IPhoneDAO {
 
     @Override
     public void saveEntity(Phone entity) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 
     @Override
     public void updateEntity(long id, Phone entity) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 
     @Override
     public void removeEntity(long id) {
-
+        throw new UnsupportedOperationException("This method should be implemented");
     }
 }
