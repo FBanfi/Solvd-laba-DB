@@ -1,7 +1,6 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.IPhoneDAO;
-import com.solvd.bank.domain.Account;
 import com.solvd.bank.domain.Phone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +32,7 @@ public class PhoneDAO extends AbstractDAO implements IPhoneDAO {
             return phone;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
         }
         finally {
             returnConnection(con);
@@ -46,8 +46,6 @@ public class PhoneDAO extends AbstractDAO implements IPhoneDAO {
                 throw new RuntimeException(e);
             }
         }
-
-        return null;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class PhoneDAO extends AbstractDAO implements IPhoneDAO {
     }
 
     @Override
-    public void updateEntity(Phone entity) {
+    public void updateEntity(long id, Phone entity) {
 
     }
 

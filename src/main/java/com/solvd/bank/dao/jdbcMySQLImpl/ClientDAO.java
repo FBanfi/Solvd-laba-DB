@@ -33,6 +33,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
             return client;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
         }
         finally {
             returnConnection(con);
@@ -46,8 +47,6 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 throw new RuntimeException(e);
             }
         }
-
-        return null;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     }
 
     @Override
-    public void updateEntity(Client entity) {
+    public void updateEntity(long id, Client entity) {
 
     }
 

@@ -2,7 +2,6 @@ package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.IAccountDAO;
 import com.solvd.bank.domain.Account;
-import com.solvd.bank.utils.connectionPool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +30,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
             return account;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
         }
         finally {
             returnConnection(con);
@@ -44,8 +44,6 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
                 throw new RuntimeException(e);
             }
         }
-
-        return null;
     }
 
     @Override
@@ -54,7 +52,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     }
 
     @Override
-    public void updateEntity(Account entity) {
+    public void updateEntity(long id, Account entity) {
 
     }
 

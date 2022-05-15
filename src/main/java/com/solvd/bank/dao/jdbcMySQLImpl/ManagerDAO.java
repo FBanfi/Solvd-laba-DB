@@ -1,7 +1,6 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.IManagerDAO;
-import com.solvd.bank.domain.Client;
 import com.solvd.bank.domain.Manager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +33,7 @@ public class ManagerDAO extends AbstractDAO implements IManagerDAO {
             return manager;
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
         }
         finally {
             returnConnection(con);
@@ -47,8 +47,6 @@ public class ManagerDAO extends AbstractDAO implements IManagerDAO {
                 throw new RuntimeException(e);
             }
         }
-
-        return null;
     }
 
     @Override
@@ -57,7 +55,7 @@ public class ManagerDAO extends AbstractDAO implements IManagerDAO {
     }
 
     @Override
-    public void updateEntity(Manager entity) {
+    public void updateEntity(long id, Manager entity) {
 
     }
 

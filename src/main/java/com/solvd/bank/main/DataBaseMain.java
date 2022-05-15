@@ -1,5 +1,7 @@
 package com.solvd.bank.main;
 
+import com.solvd.bank.dao.ICardDAO;
+import com.solvd.bank.dao.jdbcMySQLImpl.CardDAO;
 import com.solvd.bank.domain.*;
 import com.solvd.bank.services.jdbcImpl.*;
 import org.apache.logging.log4j.LogManager;
@@ -25,10 +27,22 @@ public class DataBaseMain {
         LOGGER.info("The last name of the account with the id 1 is: " + newClient.getLastName());
         LOGGER.info("The date of birth of the account with the id 1 is: " + newClient.getDateOfBirth());
 
+        //CAR SERVICE:
         CardServiceImpl cardServiceImpl = new CardServiceImpl();
+        //    SELECT
         Card newCard = cardServiceImpl.getCard(1);
         LOGGER.info("The id of the card with the id 1 is: " + newCard.getId());
         LOGGER.info("The last number of the card with the id 1 is: " + newCard.getNumber());
+        //    INSERT
+        newCard.setNumber(137946825);
+        newCard.setAccount(newAccount);
+        //cardServiceImpl.saveCard(newCard);
+        //    DELETE
+        cardServiceImpl.deleteCard(11);
+        //    UPDATE
+        Card updatedCard = new Card();
+        updatedCard.setNumber(111223);
+        cardServiceImpl.updateCardById(9, updatedCard);
 
         ManagerServiceImpl managerServiceImpl = new ManagerServiceImpl();
         Manager newManager = managerServiceImpl.getManager(1);
@@ -40,6 +54,8 @@ public class DataBaseMain {
         Phone newPhone = phoneServiceImpl.getPhone(1);
         LOGGER.info("The id of the phone with the id 1 is: " + newPhone.getId());
         LOGGER.info("The number of the phone with the id 1 is: " + newPhone.getNumber());
+
+
 
         /*
         //DES-SERIALIZING A XML FILE WITH JAXB:

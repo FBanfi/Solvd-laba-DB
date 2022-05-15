@@ -28,4 +28,24 @@ public class CardServiceImpl implements ICardService {
 
         return cardToReturn;
     }
+
+    @Override
+    public void saveCard(Card card) {
+        ICardDAO cardDAO = new CardDAO();
+        cardDAO.saveEntity(card);
+    }
+
+    @Override
+    public void deleteCard(long id) {
+        ICardDAO cardDAO = new CardDAO();
+        cardDAO.removeEntity(id);
+    }
+
+    @Override
+    public void updateCardById(long id,Card cardWithNewValues) {
+        ICardDAO cardDAO = new CardDAO();
+        cardDAO.updateEntity(id,cardWithNewValues);
+    }
+
+
 }
