@@ -1,6 +1,7 @@
 package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.IClientDAO;
+import com.solvd.bank.domain.Card;
 import com.solvd.bank.domain.Client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 public class ClientDAO extends AbstractDAO implements IClientDAO {
     private final static Logger LOGGER = LogManager.getLogger(ClientDAO.class);
     private final static String SELECT_NAME_BY_CLIENT_ID = "SELECT * FROM Clients JOIN Managers JOIN Accounts ON account_id=?";
+    private final static String DELETE_CLIENT_BY_ID = "DELETE FROM Clients WHERE idClients=?";
 
     @Override
     public Client getEntityById(long id) throws SQLException, ClassNotFoundException {
@@ -51,16 +53,83 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
 
     @Override
     public void saveEntity(Client entity) {
-
+        PreparedStatement pr = null;
+        Connection con = getConnection();
+        String name = entity.getName();
+        String lastName = entity.getLastName();
+        String dateOfBirth = entity.getDateOfBirth();
+        String email = entity.getEmail();
+        Long accountID = entity.getAccount().getId();
+        try {
+            String query = "INSERT INTO Cards (name,last_name,date_of_birth,email,account_id) VALUES (" + name + "," + lastName + dateOfBirth + email + accountID.toString() + ")";
+            pr = con.prepareStatement(query);
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
+        }
+        finally {
+            returnConnection(con);
+            try {
+                if (pr != null)
+                    pr.close();
+            } catch (SQLException e) {
+                LOGGER.error("Exception while closing the statement", e);
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
     public void updateEntity(long id, Client entity) {
-
+        PreparedStatement pr = null;
+        Connection con = getConnection();
+        String name = entity.getName();
+        String lastName = entity.getLastName();
+        String dateOfBirth = entity.getDateOfBirth();
+        String email = entity.getEmail();
+        try {
+            String query = "UPDATE Clients SET name=" + name + ",last_name=" + lastName + ",date_of_birth=" + dateOfBirth + ",email=" + email + " WHERE idClients=?";
+            pr = con.prepareStatement(query);
+            pr.setLong(1, id);
+            pr.execute();
+        } catch (SQLException e) {
+            LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
+        }
+        finally {
+            returnConnection(con);
+            try {
+                if (pr != null)
+                    pr.close();
+            } catch (SQLException e) {
+                LOGGER.error("Exception while closing the statement", e);
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
     public void removeEntity(long id) {
-
+        PreparedStatement pr = null;
+        Connection con = getConnection();
+        try {
+            pr = con.prepareStatement(DELETE_CLIENT_BY_ID);
+            pr.setLong(1, id);
+            pr.execute();
+        } catch (SQLException e) {
+            LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
+        }
+        finally {
+            returnConnection(con);
+            try {
+                if (pr != null)
+                    pr.close();
+            } catch (SQLException e) {
+                LOGGER.error("Exception while closing the statement", e);
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

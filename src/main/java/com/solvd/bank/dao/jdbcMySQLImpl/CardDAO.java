@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class CardDAO extends AbstractDAO implements ICardDAO {
     private final static Logger LOGGER = LogManager.getLogger(CardDAO.class);
     private final static String SELECT_INFO_BY_ACCOUNT_ID = "SELECT * FROM Cards JOIN Accounts WHERE account_id=?";
+    private final static String DELETE_CARD_BY_ID = "DELETE FROM Cards WHERE idCards=?";
 
     @Override
     public Card getEntityById(long id) throws SQLException, ClassNotFoundException {
@@ -104,7 +105,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
         PreparedStatement pr = null;
         Connection con = getConnection();
         try {
-            pr = con.prepareStatement("DELETE FROM Cards WHERE idCards=?");
+            pr = con.prepareStatement(DELETE_CARD_BY_ID);
             pr.setLong(1, id);
             pr.execute();
         } catch (SQLException e) {

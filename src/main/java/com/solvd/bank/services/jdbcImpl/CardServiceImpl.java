@@ -46,6 +46,4 @@ public class CardServiceImpl implements ICardService {
         ICardDAO cardDAO = new CardDAO();
         cardDAO.updateEntity(id,cardWithNewValues);
     }
-
-
 }

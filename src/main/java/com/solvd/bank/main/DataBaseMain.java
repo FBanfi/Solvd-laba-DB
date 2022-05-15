@@ -13,12 +13,27 @@ public class DataBaseMain {
     public static void main(String[] args) {
 
         //TAKING A RECORD FROM THE DATA BASE WITH CONNECTION POOL:
+        //ACCOUNT SERVICE:
         AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
+        //    SELECT
         Account newAccount = accountServiceImpl.getAccount(1);
         LOGGER.info("The id of the account with the id 1 is: " + newAccount.getId());
         LOGGER.info("The balance of the account with the id 1 is: " + newAccount.getBalance());
         LOGGER.info("The alias of the account with the id 1 is: " + newAccount.getAlias());
         LOGGER.info("The cbu of the account with the id 1 is: " + newAccount.getCbu());
+        //    INSERT
+        newAccount.setBalance(123);
+        newAccount.setCbu(123);
+        newAccount.setAlias("alohomora");
+        //accountServiceImpl.saveCard(newAccount);
+        //    DELETE
+        accountServiceImpl.deleteAccount(4);
+        //    UPDATE
+        Account updatedAccount = new Account();
+        updatedAccount.setBalance(987987);
+        updatedAccount.setCbu(987);
+        updatedAccount.setAlias("abadakadabra");
+        accountServiceImpl.updateAccountById(4, updatedAccount);
 
         ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
         Client newClient = clientServiceImpl.getClient(1);

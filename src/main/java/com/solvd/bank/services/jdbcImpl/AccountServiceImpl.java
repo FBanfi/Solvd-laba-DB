@@ -28,4 +28,22 @@ public class AccountServiceImpl implements IAccountService {
 
         return accountToReturn;
     }
+
+    @Override
+    public void saveAccount(Account account) {
+        IAccountDAO accountDAO = new AccountDAO();
+        accountDAO.saveEntity(account);
+    }
+
+    @Override
+    public void deleteAccount(long id) {
+        IAccountDAO accountDAO = new AccountDAO();
+        accountDAO.removeEntity(id);
+    }
+
+    @Override
+    public void updateAccountById(long id, Account accountWithNewValues) {
+        IAccountDAO accountDAO = new AccountDAO();
+        accountDAO.updateEntity(id,accountWithNewValues);
+    }
 }
