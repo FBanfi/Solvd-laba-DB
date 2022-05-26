@@ -12,6 +12,8 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     private final static Logger LOGGER = LogManager.getLogger(AccountDAO.class);
     private final static String SELECT_BALANCE_BY_ACCOUNT_ID = "SELECT * FROM Accounts WHERE idAccounts=?";
     private final static String DELETE_ACCOUNT_BY_ID = "DELETE FROM Accounts WHERE idAccounts=?";
+    private final static String UPDATE_ACCOUNT_BY_ID = "UPDATE Accounts SET balance=?, cbu=?, alias=? WHERE idAccounts=?";
+    private final static String INSERT_ACCOUNT = "INSERT INTO Cards (balance,cbu,alias) VALUES (?,?,?)";
 
     @Override
     public Account getEntityById(long id) throws SQLException, ClassNotFoundException {
@@ -52,12 +54,11 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     public void saveEntity(Account entity) {
         PreparedStatement pr = null;
         Connection con = getConnection();
-        Double balance = entity.getBalance();
-        Double cbu = entity.getCbu();
-        String alias = entity.getAlias();
         try {
-            String query = "INSERT INTO Cards (balance,cbu,alias) VALUES (" + balance.toString() + "," + cbu.toString() + "," + alias + ")";
-            pr = con.prepareStatement(query);
+            pr = con.prepareStatement(INSERT_ACCOUNT);
+            pr.setDouble(1, entity.getBalance());
+            pr.setDouble(2, entity.getCbu());
+            pr.setString(3, entity.getAlias());
             pr.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");
@@ -83,9 +84,11 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
         Double cbu = entity.getCbu();
         String alias = entity.getAlias();
         try {
-            String query = "UPDATE Accounts SET balance=" + balance.toString() + ",cbu=" + cbu.toString() + ",alias=" + alias + " WHERE idAccounts=?";
-            pr = con.prepareStatement(query);
-            pr.setLong(1, id);
+            pr = con.prepareStatement(UPDATE_ACCOUNT_BY_ID);
+            pr.setDouble(1, entity.getBalance());
+            pr.setDouble(2, entity.getCbu());
+            pr.setString(3, entity.getAlias());
+            pr.setLong(4, id);
             pr.execute();
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");

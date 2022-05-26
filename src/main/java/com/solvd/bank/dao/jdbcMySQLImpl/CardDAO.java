@@ -14,6 +14,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
     private final static Logger LOGGER = LogManager.getLogger(CardDAO.class);
     private final static String SELECT_INFO_BY_ACCOUNT_ID = "SELECT * FROM Cards JOIN Accounts WHERE account_id=?";
     private final static String DELETE_CARD_BY_ID = "DELETE FROM Cards WHERE idCards=?";
+    private final static String UPDATE_CARD_BY_ID = "UPDATE Cards SET number=? WHERE idCards=?";
 
     @Override
     public Card getEntityById(long id) throws SQLException, ClassNotFoundException {
@@ -80,9 +81,9 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
         Connection con = getConnection();
         Double number = entity.getNumber();
         try {
-            String query = "UPDATE Cards SET number=" + number.toString() + " WHERE idCards=?";
-            pr = con.prepareStatement(query);
-            pr.setLong(1, id);
+            pr = con.prepareStatement(UPDATE_CARD_BY_ID);
+            pr.setDouble(1, entity.getNumber());
+            pr.setLong(2, id);
             pr.execute();
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");

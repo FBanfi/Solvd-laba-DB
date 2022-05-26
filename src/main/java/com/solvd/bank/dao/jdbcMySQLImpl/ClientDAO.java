@@ -15,6 +15,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     private final static Logger LOGGER = LogManager.getLogger(ClientDAO.class);
     private final static String SELECT_NAME_BY_CLIENT_ID = "SELECT * FROM Clients JOIN Managers JOIN Accounts ON account_id=?";
     private final static String DELETE_CLIENT_BY_ID = "DELETE FROM Clients WHERE idClients=?";
+    private final static String UPDATE_CLIENT_BY_ID = "UPDATE Clients SET name=?, last_name=?, date_of_birth= ?, email=? WHERE idClients=?";
 
     @Override
     public Client getEntityById(long id) throws SQLException, ClassNotFoundException {
@@ -84,14 +85,17 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     public void updateEntity(long id, Client entity) {
         PreparedStatement pr = null;
         Connection con = getConnection();
-        String name = entity.getName();
-        String lastName = entity.getLastName();
-        String dateOfBirth = entity.getDateOfBirth();
-        String email = entity.getEmail();
+        //String name = entity.getName();
+        //String lastName = entity.getLastName();
+        //String dateOfBirth = entity.getDateOfBirth();
+        //String email = entity.getEmail();
         try {
-            String query = "UPDATE Clients SET name=" + name + ",last_name=" + lastName + ",date_of_birth=" + dateOfBirth + ",email=" + email + " WHERE idClients=?";
-            pr = con.prepareStatement(query);
-            pr.setLong(1, id);
+            pr = con.prepareStatement(UPDATE_CLIENT_BY_ID);
+            pr.setString(1, entity.getEmail());
+            pr.setString(2, entity.getName());
+            pr.setString(3, entity.getLastName());
+            pr.setString(4, entity.getDateOfBirth());
+            pr.setLong(5, id);
             pr.execute();
         } catch (SQLException e) {
             LOGGER.error("There was a problem while doing the statement");

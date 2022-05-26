@@ -33,7 +33,7 @@ public class DataBaseMain {
         updatedAccount.setBalance(987987);
         updatedAccount.setCbu(987);
         updatedAccount.setAlias("abadakadabra");
-        accountServiceImpl.updateAccountById(4, updatedAccount);
+        accountServiceImpl.updateAccountById(1, updatedAccount);
 
         ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
         Client newClient = clientServiceImpl.getClient(1);
@@ -69,7 +69,6 @@ public class DataBaseMain {
         Phone newPhone = phoneServiceImpl.getPhone(1);
         LOGGER.info("The id of the phone with the id 1 is: " + newPhone.getId());
         LOGGER.info("The number of the phone with the id 1 is: " + newPhone.getNumber());
-
 
 
         /*
