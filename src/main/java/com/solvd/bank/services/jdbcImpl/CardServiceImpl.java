@@ -46,4 +46,10 @@ public class CardServiceImpl implements ICardService {
         ICardDAO cardDAO = new CardDAO();
         cardDAO.updateEntity(id,cardWithNewValues);
     }
+
+    @Override
+    public Card getCardByAccount(long id) {
+        ICardDAO cardDAO = new CardDAO();
+        return cardDAO.getCardByAccountId(id);
+    }
 }

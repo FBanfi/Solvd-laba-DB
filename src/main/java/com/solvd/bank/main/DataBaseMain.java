@@ -15,17 +15,23 @@ public class DataBaseMain {
         //TAKING A RECORD FROM THE DATA BASE WITH CONNECTION POOL:
         //ACCOUNT SERVICE:
         AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
-        //    SELECT
+        //    SELECT - by Acc id
         Account newAccount = accountServiceImpl.getAccount(1);
         LOGGER.info("The id of the account with the id 1 is: " + newAccount.getId());
         LOGGER.info("The balance of the account with the id 1 is: " + newAccount.getBalance());
         LOGGER.info("The alias of the account with the id 1 is: " + newAccount.getAlias());
         LOGGER.info("The cbu of the account with the id 1 is: " + newAccount.getCbu());
+        //     SELECT - by usr id
+        Account account2 = accountServiceImpl.getAccountByAlias("abadakadabra");
+        LOGGER.info("The id of the account with the alias abadakadabra is: " + account2.getId());
+        LOGGER.info("The balance of the account with the alias abadakadabra is: " + account2.getBalance());
+        LOGGER.info("The alias of the account with the alias abadakadabra is: " + account2.getAlias());
+        LOGGER.info("The cbu of the account with the alias abadakadabra is: " + account2.getCbu());
         //    INSERT
         newAccount.setBalance(123);
         newAccount.setCbu(123);
         newAccount.setAlias("alohomora");
-        //accountServiceImpl.saveCard(newAccount);
+        //accountServiceImpl.saveAccount(newAccount);
         //    DELETE
         accountServiceImpl.deleteAccount(4);
         //    UPDATE
@@ -35,19 +41,31 @@ public class DataBaseMain {
         updatedAccount.setAlias("abadakadabra");
         accountServiceImpl.updateAccountById(1, updatedAccount);
 
+        //CLIENT SERVICE:
         ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
+        //     SELECT - by client id
         Client newClient = clientServiceImpl.getClient(1);
         LOGGER.info("The id of the client with the id 1 is: " + newClient.getId());
         LOGGER.info("The name of the account with the id 1 is: " + newClient.getName());
         LOGGER.info("The last name of the account with the id 1 is: " + newClient.getLastName());
         LOGGER.info("The date of birth of the account with the id 1 is: " + newClient.getDateOfBirth());
+        //     SELECT - by name
+        Client client2 = clientServiceImpl.getClientByLastName("Potter");
+        LOGGER.info("The id of the client with the name Harry 1 is: " + client2.getId());
+        LOGGER.info("The name of the account with the last name Harry is: " + client2.getName());
+        LOGGER.info("The last name of the account with the last name Harry is: " + client2.getLastName());
+        LOGGER.info("The date of birth of the account with the last name Harry is: " + client2.getDateOfBirth());
 
-        //CAR SERVICE:
+        //CARD SERVICE:
         CardServiceImpl cardServiceImpl = new CardServiceImpl();
-        //    SELECT
+        //    SELECT - by card id
         Card newCard = cardServiceImpl.getCard(1);
         LOGGER.info("The id of the card with the id 1 is: " + newCard.getId());
         LOGGER.info("The last number of the card with the id 1 is: " + newCard.getNumber());
+        //    SELECT - by card id
+        Card card2 = cardServiceImpl.getCardByAccount(1);
+        LOGGER.info("The id of the card with the account 1 is: " + card2.getId());
+        LOGGER.info("The last number of the card with the account 1 is: " + card2.getNumber());
         //    INSERT
         newCard.setNumber(137946825);
         newCard.setAccount(newAccount);
@@ -59,17 +77,20 @@ public class DataBaseMain {
         updatedCard.setNumber(111223);
         cardServiceImpl.updateCardById(9, updatedCard);
 
+        //MANAGER SERVICE:
+        //     SELECT - by manag id
         ManagerServiceImpl managerServiceImpl = new ManagerServiceImpl();
         Manager newManager = managerServiceImpl.getManager(1);
         LOGGER.info("The id of the card with the id 1 is: " + newManager.getId());
         LOGGER.info("The name of the manager with the id 1 is: " + newManager.getName());
         LOGGER.info("The last name of the manager with the id 1 is: " + newManager.getLastName());
 
+        //PHONE SERVICE:
+        //     SELECT - by phone id
         PhoneServiceImpl phoneServiceImpl = new PhoneServiceImpl();
         Phone newPhone = phoneServiceImpl.getPhone(1);
         LOGGER.info("The id of the phone with the id 1 is: " + newPhone.getId());
         LOGGER.info("The number of the phone with the id 1 is: " + newPhone.getNumber());
-
 
         /*
         //DES-SERIALIZING A XML FILE WITH JAXB:

@@ -35,6 +35,7 @@ public class AccountServiceImpl implements IAccountService {
         accountDAO.saveEntity(account);
     }
 
+
     @Override
     public void deleteAccount(long id) {
         IAccountDAO accountDAO = new AccountDAO();
@@ -45,5 +46,11 @@ public class AccountServiceImpl implements IAccountService {
     public void updateAccountById(long id, Account accountWithNewValues) {
         IAccountDAO accountDAO = new AccountDAO();
         accountDAO.updateEntity(id,accountWithNewValues);
+    }
+
+    @Override
+    public Account getAccountByAlias(String alias) {
+        IAccountDAO accountDAO = new AccountDAO();
+        return accountDAO.getAccountByAlias(alias);
     }
 }

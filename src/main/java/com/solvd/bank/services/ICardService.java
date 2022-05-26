@@ -11,4 +11,6 @@ public interface ICardService {
     void deleteCard(long id);
 
     void updateCardById(long id, Card cardWithNewValues);
+
+    Card getCardByAccount(long i);
 }

@@ -28,4 +28,10 @@ public class ManagerServiceImpl implements IManagerService {
 
         return managerToReturn;
     }
+
+    @Override
+    public Manager getManagerByPhoneId(long id) {
+        IManagerDAO managerDAO = new ManagerDAO();
+        return managerDAO.getManagerByPhoneId(id);
+    }
 }

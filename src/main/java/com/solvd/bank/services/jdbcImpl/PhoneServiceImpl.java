@@ -28,4 +28,10 @@ public class PhoneServiceImpl implements IPoneService {
 
         return phoneToReturn;
     }
+
+    @Override
+    public Phone getPhoneByClientId(long id) {
+        IPhoneDAO phoneDAO = new PhoneDAO();
+        return phoneDAO.getPhoneByClientId(id);
+    }
 }

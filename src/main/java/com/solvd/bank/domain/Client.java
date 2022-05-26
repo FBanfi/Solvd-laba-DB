@@ -1,7 +1,6 @@
 package com.solvd.bank.domain;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Client {
@@ -13,6 +12,8 @@ public class Client {
     private String email;
     private Phone phone;
     private Account account;
+    private List<Assistant> assistantsAvailable;
+    private List<Benefit> benefitsOwned;
 
     public Client(String name, String lastName, String dateOfBirth, double document,
                   String email, Phone phone, Account account) {
@@ -60,6 +61,12 @@ public class Client {
             return false;
         }
         if (this.account != other.account) {
+            return false;
+        }
+        if (this.assistantsAvailable != other.assistantsAvailable) {
+            return false;
+        }
+        if (this.benefitsOwned != other.benefitsOwned) {
             return false;
         }
         return true;

@@ -4,4 +4,5 @@ import com.solvd.bank.domain.Manager;
 
 public interface IManagerService {
     Manager getManager(long id);
+    Manager getManagerByPhoneId(long id);
 }

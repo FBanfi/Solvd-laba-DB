@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class CardDAO extends AbstractDAO implements ICardDAO {
     private final static Logger LOGGER = LogManager.getLogger(CardDAO.class);
+    private final static String SELECT_INFO_BY_ID = "SELECT * FROM Cards JOIN Accounts WHERE idCards=?";
     private final static String SELECT_INFO_BY_ACCOUNT_ID = "SELECT * FROM Cards JOIN Accounts WHERE account_id=?";
     private final static String DELETE_CARD_BY_ID = "DELETE FROM Cards WHERE idCards=?";
     private final static String UPDATE_CARD_BY_ID = "UPDATE Cards SET number=? WHERE idCards=?";
@@ -22,7 +23,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
         ResultSet rs = null;
         Connection con = getConnection();
         try {
-            pr = con.prepareStatement(SELECT_INFO_BY_ACCOUNT_ID);
+            pr = con.prepareStatement(SELECT_INFO_BY_ID);
             pr.setLong(1, id);
             rs = pr.executeQuery();
             Card card = new Card();
@@ -118,6 +119,39 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
             try {
                 if (pr != null)
                     pr.close();
+            } catch (SQLException e) {
+                LOGGER.error("Exception while closing the statement", e);
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public Card getCardByAccountId(long id) {
+        PreparedStatement pr = null;
+        ResultSet rs = null;
+        Connection con = getConnection();
+        try {
+            pr = con.prepareStatement(SELECT_INFO_BY_ACCOUNT_ID);
+            pr.setDouble(1, id);
+            rs = pr.executeQuery();
+            Card card = new Card();
+            rs.next();
+            card.setId(Integer.parseInt(rs.getString("idCards")));
+            card.setNumber(Double.parseDouble(rs.getString("number")));
+
+            return card;
+        } catch (SQLException e) {
+            LOGGER.error("There was a problem while doing the statement");
+            throw new RuntimeException(e);
+        }
+        finally {
+            returnConnection(con);
+            try {
+                if (pr != null)
+                    pr.close();
+                if (rs != null)
+                    rs.close();
             } catch (SQLException e) {
                 LOGGER.error("Exception while closing the statement", e);
                 throw new RuntimeException(e);

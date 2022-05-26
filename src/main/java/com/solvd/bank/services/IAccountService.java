@@ -10,4 +10,6 @@ public interface IAccountService {
     void deleteAccount(long id);
 
     void updateAccountById(long id, Account accountWithNewValues);
+
+    Account getAccountByAlias(String alias);
 }
