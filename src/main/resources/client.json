@@ -1,0 +1,38 @@
+[
+  {
+    "id": 4,
+    "name": "Ginny",
+    "lName": "Weasley",
+    "dob": "31/07/1980",
+    "doc": 21123456,
+    "email": "harrypotter@gmail.com",
+    "phone": {
+      "pid": 11,
+      "number": 42589785
+    },
+    "account": {
+      "aid": 6,
+      "balance": 1000000,
+      "cbu": 123546789,
+      "alias": "butter.beer"
+    }
+  },
+  {
+    "id": 5,
+    "name": "George",
+    "lName": "Weasley",
+    "dob": "01/05/1978",
+    "doc": 20123456,
+    "email": "harrypotter@gmail.com",
+    "phone": {
+      "pid": 10,
+      "number": 42581785
+    },
+    "account": {
+      "aid": 7,
+      "balance": 1000000,
+      "cbu": 123546789,
+      "alias": "alohomora"
+    }
+  }
+]

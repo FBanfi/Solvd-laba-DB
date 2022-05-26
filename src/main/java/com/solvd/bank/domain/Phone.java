@@ -1,9 +1,13 @@
 package com.solvd.bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Phone {
+    @JsonProperty("pid")
     private long id;
+    @JsonProperty("number")
     private int number;
     private Client client;
 

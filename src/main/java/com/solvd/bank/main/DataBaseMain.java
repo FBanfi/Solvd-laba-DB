@@ -1,11 +1,12 @@
 package com.solvd.bank.main;
 
-import com.solvd.bank.dao.ICardDAO;
-import com.solvd.bank.dao.jdbcMySQLImpl.CardDAO;
 import com.solvd.bank.domain.*;
+import com.solvd.bank.services.jasonService.ClientService;
 import com.solvd.bank.services.jdbcImpl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.List;
+
 
 public class DataBaseMain {
     private static Logger LOGGER = LogManager.getLogger(DataBaseMain.class);
@@ -92,12 +93,15 @@ public class DataBaseMain {
         LOGGER.info("The id of the phone with the id 1 is: " + newPhone.getId());
         LOGGER.info("The number of the phone with the id 1 is: " + newPhone.getNumber());
 
-        /*
-        //DES-SERIALIZING A XML FILE WITH JAXB:
-        IJaxbService jaxbService = new JaxbServiceImpl();
-        Manager serializedManager = (Manager) jaxbService.unmarshall("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\serialized-manager.xml");
-        LOGGER.info("AAAAAAAAAAAAAAAAAAAAAAAAAA");
-        LOGGER.info("The name of the manager is: " + serializedManager.getName());
-         */
+/*
+        //DES-SERIALIZING A XML FILE WITH JAXB:            ---------> IMPORTANT, NOW IT DOES NOT WORK BECAUSE I USED THE ANNOTATIONS OF JSON HOMETASK
+        ManagerServiceImpl jaxbService = new ManagerServiceImpl();
+        Manager serializedManager = jaxbService.unmarshall("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\serialized-manager.xml");
+        LOGGER.info("The name of the manager is: " + serializedManager.getName() + "and the date of birth of his 1 client is: " + serializedManager.getClient().remove(1).getDateOfBirth());
+*/
+        //DES-SERIALIZING A JSON FILE:
+        ClientService clientService = new ClientService();
+        List<Client> clients = clientService.getDeSerializedClient("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client.json");
+        LOGGER.info("The name of the first client of the jason file is: " + clients.get(1).getName());
     }
 }

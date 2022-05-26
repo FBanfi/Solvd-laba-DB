@@ -15,7 +15,7 @@
             <email>harrypotter@gmail.com</email>
         </client>
         <client>
-            <cid>1</cid>
+            <cid>2</cid>
             <clientfname>Hermione</clientfname>
             <clientlname>Granger</clientlname>
             <birth>19/09/1979</birth>
@@ -23,7 +23,7 @@
             <email>hermionegranger@gmail.com</email>
         </client>
         <client>
-            <cid>1</cid>
+            <cid>3</cid>
             <clientfname>Ron</clientfname>
             <clientlname>Weasley</clientlname>
             <birth>01/03/1980</birth>

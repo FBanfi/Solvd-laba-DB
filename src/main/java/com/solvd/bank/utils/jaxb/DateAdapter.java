@@ -2,16 +2,17 @@ package com.solvd.bank.utils.jaxb;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class DateAdapter extends XmlAdapter {
+public class DateAdapter extends XmlAdapter<String, Date> {
 
     @Override
-    public Object unmarshal(Object date) throws Exception {
-        return new SimpleDateFormat("dd/mm/yyyy").format(date);
+    public Date unmarshal(String string) throws Exception {
+        return new SimpleDateFormat("dd/MM/yyyy").parse(string);
     }
 
     @Override
-    public Object marshal(Object date) throws Exception {
-        return new SimpleDateFormat("dd/mm/yyyy").parse((String) date);
+    public String marshal(Date date) throws Exception {
+        return new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
 }

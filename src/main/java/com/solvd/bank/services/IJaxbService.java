@@ -1,5 +1,7 @@
 package com.solvd.bank.services;
 
+import com.solvd.bank.domain.Manager;
+
 public interface IJaxbService {
-    Object unmarshall(String xmFilePath);
+    Manager unmarshall(String xmFilePath);
 }

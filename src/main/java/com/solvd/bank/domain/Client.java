@@ -1,16 +1,28 @@
 package com.solvd.bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Client {
+    @JsonProperty("id")
     private long id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("lName")
     private String lastName;
+    @JsonProperty("dob")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private String dateOfBirth;
+    @JsonProperty("doc")
     private double document;
+    @JsonProperty("email")
     private String email;
+    @JsonProperty("phone")
     private Phone phone;
+    @JsonProperty("account")
     private Account account;
     private List<Assistant> assistantsAvailable;
     private List<Benefit> benefitsOwned;

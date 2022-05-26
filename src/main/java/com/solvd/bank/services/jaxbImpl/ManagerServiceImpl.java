@@ -1,6 +1,6 @@
 package com.solvd.bank.services.jaxbImpl;
 
-import com.solvd.bank.main.DataBaseMain;
+import com.solvd.bank.domain.Manager;
 import com.solvd.bank.services.IJaxbService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,28 +11,28 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class JaxbServiceImpl implements IJaxbService {
-    private static final Logger LOGGER = LogManager.getLogger(JaxbServiceImpl.class);
+public class ManagerServiceImpl implements IJaxbService {
+    private static final Logger LOGGER = LogManager.getLogger(ManagerServiceImpl.class);
 
-    public Object unmarshall(String xmlFilePath) {
+    public Manager unmarshall(String xmlFilePath) {
         File xmlFile = new File(xmlFilePath);
         JAXBContext jaxbContext;
         try {
-            jaxbContext = JAXBContext.newInstance(Object.class);
+            jaxbContext = JAXBContext.newInstance(Manager.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            return unmarshaller.unmarshal(xmlFile);
+            return (Manager) unmarshaller.unmarshal(xmlFile);
         } catch (JAXBException e) {
             LOGGER.error("There was an error with jaxb library", e);
         }
         return null;
     }
 
-    public void marshall(Object object, String xmlResultPath) {
+    public void marshall(Manager manager, String xmlResultPath) {
         JAXBContext jaxbContext;
         try {
-            jaxbContext = JAXBContext.newInstance(this.getClass());
+            jaxbContext = JAXBContext.newInstance(Manager.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.marshal(object, new File(xmlResultPath));
+            marshaller.marshal(manager, new File(xmlResultPath));
         } catch (JAXBException e) {
             LOGGER.error("There was an error with jaxb library", e);
         }

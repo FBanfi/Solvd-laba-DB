@@ -1,13 +1,19 @@
 package com.solvd.bank.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Account {
+    @JsonProperty("aid")
     private long id;
+    @JsonProperty("balance")
     private double balance;
+    @JsonProperty("cbu")
     private double cbu;
+    @JsonProperty("alias")
     private String alias;
     private List<Credit> credits = new ArrayList<>();
     private List<Transaction> transactions = new ArrayList<>();
