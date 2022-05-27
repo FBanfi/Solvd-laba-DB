@@ -11,8 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class ClientService implements IJasonService {
-    private static final Logger LOGGER = LogManager.getLogger(ClientService.class);
+public class ClientServiceImpl implements IJasonService {
+    private static final Logger LOGGER = LogManager.getLogger(ClientServiceImpl.class);
 
     public List<Client> getDeSerializedClient(String path) {
         ObjectMapper om = new ObjectMapper();
@@ -23,8 +23,7 @@ public class ClientService implements IJasonService {
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("There was an error while des serializing the client" + e);
+            throw new RuntimeException(e);
         }
-
-        return null;
     }
 }

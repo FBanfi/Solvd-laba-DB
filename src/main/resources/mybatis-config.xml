@@ -1,0 +1,18 @@
+<configuration>
+    <properties resource = "db.properties" />
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <property name="maxconnections" value="${maxconnections}"/>
+                <property name="driver" value="${driver}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client-mapper.xml"/>
+    </mappers>
+</configuration>

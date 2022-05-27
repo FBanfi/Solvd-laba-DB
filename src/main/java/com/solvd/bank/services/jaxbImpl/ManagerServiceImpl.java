@@ -23,8 +23,8 @@ public class ManagerServiceImpl implements IJaxbService {
             return (Manager) unmarshaller.unmarshal(xmlFile);
         } catch (JAXBException e) {
             LOGGER.error("There was an error with jaxb library", e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public void marshall(Manager manager, String xmlResultPath) {
@@ -35,6 +35,7 @@ public class ManagerServiceImpl implements IJaxbService {
             marshaller.marshal(manager, new File(xmlResultPath));
         } catch (JAXBException e) {
             LOGGER.error("There was an error with jaxb library", e);
+            throw new RuntimeException(e);
         }
     }
 }

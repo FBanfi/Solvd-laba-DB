@@ -1,0 +1,30 @@
+<mapper namespace="com.solvd.bank.dao.IClientDAO" >
+    <resultMap type="com.solvd.bank.domain.Client"
+        id="ClientResultMap" autoMapping="false" >
+            <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="lastName" property="lastName" />
+        <result column="doc" property="doc" />
+        <result column="email" property="email" />
+    </resultMap>
+    <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Insert into Clients (name,lastName,doc,email) values (#{client.name},#{client.lastName},#{client.doc},#{client.email})
+        ]]>
+    </insert>
+    <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Update Clients set name=${client.name},lastName=${client.lastName},doc=${client.doc},email=${client.email} where id=${client.id}
+        ]]>
+    </update>
+    <delete id="removeEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Delete from Clients where id=${client.id}
+        ]]>
+    </delete>
+    <select id="getEntityById" resultMap="ClientResultMap">
+        <![CDATA[
+            Select * from Clients where id=${client.id}
+        ]]>
+    </select>
+</mapper>

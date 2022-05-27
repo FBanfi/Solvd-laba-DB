@@ -1,7 +1,7 @@
 package com.solvd.bank.main;
 
 import com.solvd.bank.domain.*;
-import com.solvd.bank.services.jasonService.ClientService;
+import com.solvd.bank.services.jasonService.ClientServiceImpl;
 import com.solvd.bank.services.jdbcImpl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,7 @@ public class DataBaseMain {
         accountServiceImpl.updateAccountById(1, updatedAccount);
 
         //CLIENT SERVICE:
-        ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
+        com.solvd.bank.services.jdbcImpl.ClientServiceImpl clientServiceImpl = new com.solvd.bank.services.jdbcImpl.ClientServiceImpl();
         //     SELECT - by client id
         Client newClient = clientServiceImpl.getClient(1);
         LOGGER.info("The id of the client with the id 1 is: " + newClient.getId());
@@ -100,7 +100,7 @@ public class DataBaseMain {
         LOGGER.info("The name of the manager is: " + serializedManager.getName() + "and the date of birth of his 1 client is: " + serializedManager.getClient().remove(1).getDateOfBirth());
 */
         //DES-SERIALIZING A JSON FILE:
-        ClientService clientService = new ClientService();
+        ClientServiceImpl clientService = new ClientServiceImpl();
         List<Client> clients = clientService.getDeSerializedClient("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client.json");
         LOGGER.info("The name of the first client of the jason file is: " + clients.get(1).getName());
     }

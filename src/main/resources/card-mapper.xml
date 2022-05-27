@@ -1,0 +1,28 @@
+<mapper namespace="com.solvd.bank.dao.ICardDAO" >
+    <resultMap type="com.solvd.bank.domain.Card"
+               id="CardResultMap" autoMapping="false" >
+        <id column="id" property="id" />
+        <result column="number" property="number" />
+        <association property="account" resultMap="com.solvd.bank.dao.IAccountDAO.AccountResultMap" />
+    </resultMap>
+    <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Insert into Cards number values (#{card.number})
+        ]]>
+    </insert>
+    <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Update Cards set number=${card.number} where id=${card.id}
+        ]]>
+    </update>
+    <delete id="removeEntity" useGeneratedKeys="true" keyProperty="true">
+        <![CDATA[
+            Delete from Cards where id=${card.id}
+        ]]>
+    </delete>
+    <select id="getEntityById" resultMap="CardResultMap">
+        <![CDATA[
+            Select * from Cards where id=${card.id}
+        ]]>
+    </select>
+</mapper>
