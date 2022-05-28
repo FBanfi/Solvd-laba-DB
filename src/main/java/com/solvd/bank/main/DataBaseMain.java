@@ -2,7 +2,7 @@ package com.solvd.bank.main;
 
 import com.solvd.bank.domain.*;
 import com.solvd.bank.services.jasonService.ClientServiceImpl;
-import com.solvd.bank.services.jdbcImpl.*;
+import com.solvd.bank.services.mybatis.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
@@ -98,10 +98,12 @@ public class DataBaseMain {
         ManagerServiceImpl jaxbService = new ManagerServiceImpl();
         Manager serializedManager = jaxbService.unmarshall("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\serialized-manager.xml");
         LOGGER.info("The name of the manager is: " + serializedManager.getName() + "and the date of birth of his 1 client is: " + serializedManager.getClient().remove(1).getDateOfBirth());
-*/
+
+
         //DES-SERIALIZING A JSON FILE:
         ClientServiceImpl clientService = new ClientServiceImpl();
         List<Client> clients = clientService.getDeSerializedClient("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client.json");
         LOGGER.info("The name of the first client of the jason file is: " + clients.get(1).getName());
+*/
     }
 }

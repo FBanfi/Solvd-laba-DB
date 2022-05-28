@@ -7,27 +7,30 @@ import java.util.Objects;
 
 @XmlRootElement(name="manager")
 public class Manager {
-    @XmlAttribute(name="id")
+    @XmlAttribute(name = "id")
     private long id;
 
-    @XmlElement(name="managerfname")
+    @XmlElement(name = "managerfname")
     private String name;
 
-    @XmlElement(name="managerlname")
+    @XmlElement(name = "managerlname")
     private String lastName;
 
-    @XmlElement(name="phone")
+    //@XmlElement(name="phone")
+    @XmlTransient
     private Phone phone;
 
-    @XmlElementWrapper(name="clients")
-    @XmlElement(name="client", type=Client.class)
+    //@XmlElementWrapper(name="clients")
+    //@XmlElement(name="client", type=Client.class)
+    @XmlTransient
     private List<Client> Client = new ArrayList<>();
 
-    @XmlElementWrapper(name="accounts")
-    @XmlElement(name="account", type=Account.class)
+    //@XmlElementWrapper(name="accounts")
+    //@XmlElement(name="account", type=Account.class)
+    @XmlTransient
     private List<Account> accounts = new ArrayList<>();
 
-    @XmlElement(name="username")
+    @XmlElement(name = "username")
     private String username;
 
     @XmlTransient
@@ -111,7 +114,7 @@ public class Manager {
         this.phone = phone;
     }
 
-    public List<com.solvd.bank.domain.Client> getClient() {
+    public List<Client> getClient() {
         return Client;
     }
 

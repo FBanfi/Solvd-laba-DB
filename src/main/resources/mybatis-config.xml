@@ -1,3 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource = "db.properties" />
     <environments default="development">
@@ -7,12 +10,15 @@
                 <property name="url" value="${url}"/>
                 <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
-                <property name="maxconnections" value="${maxconnections}"/>
                 <property name="driver" value="${driver}"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client-mapper.xml"/>
+        <mapper resource="client-mapper.xml"/>
+        <mapper resource="account-mapper.xml"/>
+        <mapper resource="card-mapper.xml"/>
+        <mapper resource="manager-mapper.xml"/>
+        <mapper resource="phone-mapper.xml"/>
     </mappers>
 </configuration>
