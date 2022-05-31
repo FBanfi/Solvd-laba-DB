@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.bank.dao.IAccountDAO" >
     <resultMap type="com.solvd.bank.domain.Account"
                id="AccountResultMap" autoMapping="false" >
@@ -18,7 +19,7 @@
             Update Accounts set balance=${account.balance},cbu=${account.cbu},alias=${account.alias} where id=${account.id}
         ]]>
     </update>
-    <delete id="removeEntity" useGeneratedKeys="true" keyProperty="true">
+    <delete id="removeEntity">
         <![CDATA[
             Delete from Accounts where id=${account.id}
         ]]>

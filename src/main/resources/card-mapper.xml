@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.bank.dao.ICardDAO" >
     <resultMap type="com.solvd.bank.domain.Card"
                id="CardResultMap" autoMapping="false" >
@@ -17,7 +18,7 @@
             Update Cards set number=${card.number} where id=${card.id}
         ]]>
     </update>
-    <delete id="removeEntity" useGeneratedKeys="true" keyProperty="true">
+    <delete id="removeEntity">
         <![CDATA[
             Delete from Cards where id=${card.id}
         ]]>
