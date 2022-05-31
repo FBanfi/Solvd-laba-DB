@@ -14,35 +14,6 @@ public class Transaction {
         this.account = account;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Transaction other = (Transaction) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.money != other.money) {
-            return false;
-        }
-        if (this.destinationCBU != other.destinationCBU) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, money, destinationCBU,account);
-    }
-
     public long getId() {
         return id;
     }
@@ -73,5 +44,44 @@ public class Transaction {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Transaction other = (Transaction) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.money != other.money) {
+            return false;
+        }
+        if (this.destinationCBU != other.destinationCBU) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, money, destinationCBU,account);
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+            "id=" + id +
+            ", money=" + money +
+            ", destinationCBU=" + destinationCBU +
+            ", account=" + account +
+            '}';
     }
 }

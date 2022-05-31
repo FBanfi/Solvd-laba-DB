@@ -15,35 +15,6 @@ public class Debt {
         this.account = account;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Debt other = (Debt) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.money != other.money) {
-            return false;
-        }
-        if (this.deadLine != other.deadLine) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, money, deadLine, account);
-    }
-
     public long getId() {
         return id;
     }
@@ -74,5 +45,44 @@ public class Debt {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Debt other = (Debt) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.money != other.money) {
+            return false;
+        }
+        if (this.deadLine != other.deadLine) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, money, deadLine, account);
+    }
+
+    @Override
+    public String toString() {
+        return "Debt{" +
+            "id=" + id +
+            ", money=" + money +
+            ", deadLine=" + deadLine +
+            ", account=" + account +
+            '}';
     }
 }

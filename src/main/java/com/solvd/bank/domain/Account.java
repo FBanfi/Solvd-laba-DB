@@ -34,63 +34,6 @@ public class Account {
     public Account() {
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Account other = (Account) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.balance != other.balance) {
-            return false;
-        }
-        if (this.cbu != other.cbu) {
-            return false;
-        }
-        if (this.alias != other.alias) {
-            return false;
-        }
-        if (this.credits != other.credits) {
-            return false;
-        }
-        if (this.transactions != other.transactions) {
-            return false;
-        }
-        if (this.debts != other.debts) {
-            return false;
-        }
-        if (this.deposits != other.deposits) {
-            return false;
-        }
-        if (this.whitdrawals != other.whitdrawals) {
-            return false;
-        }
-        if (this.investments != other.investments) {
-            return false;
-        }
-        if (this.payments != other.payments) {
-            return false;
-        }
-        if (this.cards != other.cards) {
-            return false;
-        }
-        if (this.subscriptions != other.subscriptions) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, balance, cbu, alias, credits, transactions, debts,
-                deposits, whitdrawals, investments, payments, cards, subscriptions);
-    }
-
     public long getId() {
         return id;
     }
@@ -193,5 +136,81 @@ public class Account {
 
     public void setSubscriptions(List<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Account other = (Account) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.balance != other.balance) {
+            return false;
+        }
+        if (this.cbu != other.cbu) {
+            return false;
+        }
+        if (this.alias != other.alias) {
+            return false;
+        }
+        if (this.credits != other.credits) {
+            return false;
+        }
+        if (this.transactions != other.transactions) {
+            return false;
+        }
+        if (this.debts != other.debts) {
+            return false;
+        }
+        if (this.deposits != other.deposits) {
+            return false;
+        }
+        if (this.whitdrawals != other.whitdrawals) {
+            return false;
+        }
+        if (this.investments != other.investments) {
+            return false;
+        }
+        if (this.payments != other.payments) {
+            return false;
+        }
+        if (this.cards != other.cards) {
+            return false;
+        }
+        if (this.subscriptions != other.subscriptions) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, balance, cbu, alias, credits, transactions, debts,
+                deposits, whitdrawals, investments, payments, cards, subscriptions);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+            "id=" + id +
+            ", balance=" + balance +
+            ", cbu=" + cbu +
+            ", alias='" + alias + '\'' +
+            ", credits=" + credits +
+            ", transactions=" + transactions +
+            ", debts=" + debts +
+            ", deposits=" + deposits +
+            ", whitdrawals=" + whitdrawals +
+            ", investments=" + investments +
+            ", payments=" + payments +
+            ", cards=" + cards +
+            ", subscriptions=" + subscriptions +
+            '}';
     }
 }

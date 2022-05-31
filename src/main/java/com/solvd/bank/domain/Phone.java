@@ -20,6 +20,30 @@ public class Phone {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -46,27 +70,12 @@ public class Phone {
         return Objects.hash(id, client, client);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
+    @Override
+    public String toString() {
+        return "Phone{" +
+            "id=" + id +
+            ", number=" + number +
+            ", client=" + client +
+            '}';
     }
 }

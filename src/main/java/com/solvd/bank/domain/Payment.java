@@ -14,35 +14,6 @@ public class Payment {
         this.account = account;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Payment other = (Payment) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.money != other.money) {
-            return false;
-        }
-        if (this.placeOfPayment != other.placeOfPayment) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, money, placeOfPayment, account);
-    }
-
     public long getId() {
         return id;
     }
@@ -73,5 +44,44 @@ public class Payment {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Payment other = (Payment) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.money != other.money) {
+            return false;
+        }
+        if (this.placeOfPayment != other.placeOfPayment) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, money, placeOfPayment, account);
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+            "id=" + id +
+            ", money=" + money +
+            ", placeOfPayment='" + placeOfPayment + '\'' +
+            ", account=" + account +
+            '}';
     }
 }

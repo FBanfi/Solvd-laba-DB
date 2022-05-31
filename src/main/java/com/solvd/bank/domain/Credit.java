@@ -18,38 +18,6 @@ public class Credit {
         this.account = account;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Credit other = (Credit) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.money != other.money) {
-            return false;
-        }
-        if (this.interest != other.interest) {
-            return false;
-        }
-        if (this.expiration != other.expiration) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, money, interest, expiration, account);
-    }
-
     public long getId() {
         return id;
     }
@@ -88,5 +56,48 @@ public class Credit {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Credit other = (Credit) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.money != other.money) {
+            return false;
+        }
+        if (this.interest != other.interest) {
+            return false;
+        }
+        if (this.expiration != other.expiration) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, money, interest, expiration, account);
+    }
+
+    @Override
+    public String toString() {
+        return "Credit{" +
+            "id=" + id +
+            ", money=" + money +
+            ", interest=" + interest +
+            ", expiration=" + expiration +
+            ", account=" + account +
+            '}';
     }
 }

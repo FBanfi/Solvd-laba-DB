@@ -15,35 +15,6 @@ public class Subscription {
         this.accounts = accounts;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Subscription other = (Subscription) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.serviceDespription != other.serviceDespription) {
-            return false;
-        }
-        if (this.monthlyCost != other.monthlyCost) {
-            return false;
-        }
-        if (this.accounts != other.accounts) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, serviceDespription, monthlyCost, accounts);
-    }
-
     public long getId() {
         return id;
     }
@@ -74,5 +45,44 @@ public class Subscription {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Subscription other = (Subscription) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.serviceDespription != other.serviceDespription) {
+            return false;
+        }
+        if (this.monthlyCost != other.monthlyCost) {
+            return false;
+        }
+        if (this.accounts != other.accounts) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, serviceDespription, monthlyCost, accounts);
+    }
+
+    @Override
+    public String toString() {
+        return "Subscription{" +
+            "id=" + id +
+            ", serviceDespription='" + serviceDespription + '\'' +
+            ", monthlyCost=" + monthlyCost +
+            ", accounts=" + accounts +
+            '}';
     }
 }

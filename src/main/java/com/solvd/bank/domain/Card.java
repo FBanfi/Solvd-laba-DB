@@ -16,6 +16,30 @@ public class Card {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getNumber() {
+        return number;
+    }
+
+    public void setNumber(double number) {
+        this.number = number;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -42,27 +66,12 @@ public class Card {
         return Objects.hash(id, number, account);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public double getNumber() {
-        return number;
-    }
-
-    public void setNumber(double number) {
-        this.number = number;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    @Override
+    public String toString() {
+        return "Card{" +
+            "id=" + id +
+            ", number=" + number +
+            ", account=" + account +
+            '}';
     }
 }

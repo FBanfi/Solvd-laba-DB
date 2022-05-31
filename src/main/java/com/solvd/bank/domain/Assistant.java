@@ -15,6 +15,22 @@ public class Assistant {
         this.lastName = lastName;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -44,19 +60,13 @@ public class Assistant {
         return Objects.hash(id, name, lastName);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public String toString() {
+        return "Assistant{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", clientsHelped=" + clientsHelped +
+            '}';
     }
 }

@@ -13,6 +13,22 @@ public class Benefit {
         this.benefit = benefit;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getBenefit() {
+        return benefit;
+    }
+
+    public void setBenefit(String benefit) {
+        this.benefit = benefit;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -39,19 +55,12 @@ public class Benefit {
         return Objects.hash(id, benefit);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getBenefit() {
-        return benefit;
-    }
-
-    public void setBenefit(String benefit) {
-        this.benefit = benefit;
+    @Override
+    public String toString() {
+        return "Benefit{" +
+            "id=" + id +
+            ", benefit='" + benefit + '\'' +
+            ", clients=" + clients +
+            '}';
     }
 }

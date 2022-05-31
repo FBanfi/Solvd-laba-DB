@@ -47,41 +47,6 @@ public class Manager {
     public Manager() {
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Manager other = (Manager) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.name != other.name) {
-            return false;
-        }
-        if (this.lastName != other.lastName) {
-            return false;
-        }
-        if (this.phone != other.phone) {
-            return false;
-        }
-        if (this.username != other.username) {
-            return false;
-        }
-        if (this.password != other.password) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, lastName, phone, username, password);
-    }
-
     public long getId() {
         return id;
     }
@@ -144,5 +109,54 @@ public class Manager {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Manager other = (Manager) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.name != other.name) {
+            return false;
+        }
+        if (this.lastName != other.lastName) {
+            return false;
+        }
+        if (this.phone != other.phone) {
+            return false;
+        }
+        if (this.username != other.username) {
+            return false;
+        }
+        if (this.password != other.password) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, phone, username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", phone=" + phone +
+            ", Client=" + Client +
+            ", accounts=" + accounts +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            '}';
     }
 }

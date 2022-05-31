@@ -42,53 +42,6 @@ public class Client {
 
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Client other = (Client) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.name != other.name) {
-            return false;
-        }
-        if (this.lastName != other.lastName) {
-            return false;
-        }
-        if (this.dateOfBirth != other.dateOfBirth) {
-            return false;
-        }
-        if (this.document != other.document) {
-            return false;
-        }
-        if (this.email != other.email) {
-            return false;
-        }
-        if (this.phone != other.phone) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        if (this.assistantsAvailable != other.assistantsAvailable) {
-            return false;
-        }
-        if (this.benefitsOwned != other.benefitsOwned) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, lastName, dateOfBirth, document, email, phone, account);
-    }
-
     public long getId() {
         return id;
     }
@@ -151,5 +104,68 @@ public class Client {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Client other = (Client) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.name != other.name) {
+            return false;
+        }
+        if (this.lastName != other.lastName) {
+            return false;
+        }
+        if (this.dateOfBirth != other.dateOfBirth) {
+            return false;
+        }
+        if (this.document != other.document) {
+            return false;
+        }
+        if (this.email != other.email) {
+            return false;
+        }
+        if (this.phone != other.phone) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        if (this.assistantsAvailable != other.assistantsAvailable) {
+            return false;
+        }
+        if (this.benefitsOwned != other.benefitsOwned) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, dateOfBirth, document, email, phone, account);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", dateOfBirth='" + dateOfBirth + '\'' +
+            ", document=" + document +
+            ", email='" + email + '\'' +
+            ", phone=" + phone +
+            ", account=" + account +
+            ", assistantsAvailable=" + assistantsAvailable +
+            ", benefitsOwned=" + benefitsOwned +
+            '}';
     }
 }

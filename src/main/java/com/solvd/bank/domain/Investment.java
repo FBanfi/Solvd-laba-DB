@@ -14,35 +14,6 @@ public class Investment {
         this.account = account;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Investment other = (Investment) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.money != other.money) {
-            return false;
-        }
-        if (this.description != other.description) {
-            return false;
-        }
-        if (this.account != other.account) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, money, description, account);
-    }
-
     public long getId() {
         return id;
     }
@@ -73,5 +44,44 @@ public class Investment {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Investment other = (Investment) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.money != other.money) {
+            return false;
+        }
+        if (this.description != other.description) {
+            return false;
+        }
+        if (this.account != other.account) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, money, description, account);
+    }
+
+    @Override
+    public String toString() {
+        return "Investment{" +
+            "id=" + id +
+            ", money=" + money +
+            ", description='" + description + '\'' +
+            ", account=" + account +
+            '}';
     }
 }

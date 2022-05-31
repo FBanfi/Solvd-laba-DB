@@ -12,6 +12,30 @@ public class Whitdrawal {
         this.account = account;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -38,27 +62,12 @@ public class Whitdrawal {
         return Objects.hash(id, money, account);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public double getMoney() {
-        return money;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    @Override
+    public String toString() {
+        return "Whitdrawal{" +
+            "id=" + id +
+            ", money=" + money +
+            ", account=" + account +
+            '}';
     }
 }
