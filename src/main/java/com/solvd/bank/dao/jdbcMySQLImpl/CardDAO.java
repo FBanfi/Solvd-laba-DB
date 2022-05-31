@@ -80,7 +80,6 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
     public void updateEntity(long id, Card entity) {
         PreparedStatement pr = null;
         Connection con = getConnection();
-        Double number = entity.getNumber();
         try {
             pr = con.prepareStatement(UPDATE_CARD_BY_ID);
             pr.setDouble(1, entity.getNumber());

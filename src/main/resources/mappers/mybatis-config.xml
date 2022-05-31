@@ -7,18 +7,18 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
                 <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
-                <property name="driver" value="${driver}"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="client-mapper.xml"/>
-        <mapper resource="account-mapper.xml"/>
-        <mapper resource="card-mapper.xml"/>
-        <mapper resource="manager-mapper.xml"/>
-        <mapper resource="phone-mapper.xml"/>
+        <mapper resource="mappers/client-mapper.xml"/>
+        <mapper resource="mappers/account-mapper.xml"/>
+        <mapper resource="mappers/card-mapper.xml"/>
+        <mapper resource="mappers/manager-mapper.xml"/>
+        <mapper resource="mappers/phone-mapper.xml"/>
     </mappers>
 </configuration>

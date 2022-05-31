@@ -6,4 +6,5 @@ public interface IDBConstants {
     String PASSWORD = "db.pass";
     String MAX_CONNECTIONS = "db.max_connections";
     String DRIVER = "db.driver";
+    String MYBATIS_CONFIG = "mappers/mybatis-config.xml";
 }

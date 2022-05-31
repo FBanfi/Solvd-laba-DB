@@ -11,22 +11,22 @@
     </resultMap>
     <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
         <![CDATA[
-            Insert into Accounts (balance,cbu,alias) values (#{account.balance},#{account.cbu},#{account.alias})
+            Insert into Accounts (balance,cbu,alias) values (#{balance},#{cbu},#{alias})
         ]]>
     </insert>
     <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
         <![CDATA[
-            Update Accounts set balance=${account.balance},cbu=${account.cbu},alias=${account.alias} where id=${account.id}
+            Update Accounts set balance=${balance},cbu=${cbu},alias=${alias} where id=${id}
         ]]>
     </update>
     <delete id="removeEntity">
         <![CDATA[
-            Delete from Accounts where id=${account.id}
+            Delete from Accounts where id=${id}
         ]]>
     </delete>
     <select id="getEntityById" resultMap="AccountResultMap">
         <![CDATA[
-            Select * from Accounts where id=${account.id}
+            Select * from Accounts where id=${id}
         ]]>
     </select>
 </mapper>

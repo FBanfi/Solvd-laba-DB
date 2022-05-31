@@ -86,10 +86,6 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
     public void updateEntity(long id, Client entity) {
         PreparedStatement pr = null;
         Connection con = getConnection();
-        //String name = entity.getName();
-        //String lastName = entity.getLastName();
-        //String dateOfBirth = entity.getDateOfBirth();
-        //String email = entity.getEmail();
         try {
             pr = con.prepareStatement(UPDATE_CLIENT_BY_ID);
             pr.setString(1, entity.getEmail());

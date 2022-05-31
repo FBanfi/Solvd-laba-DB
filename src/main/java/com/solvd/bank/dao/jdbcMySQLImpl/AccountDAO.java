@@ -81,9 +81,6 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     public void updateEntity(long id, Account entity) {
         PreparedStatement pr = null;
         Connection con = getConnection();
-        Double balance = entity.getBalance();
-        Double cbu = entity.getCbu();
-        String alias = entity.getAlias();
         try {
             pr = con.prepareStatement(UPDATE_ACCOUNT_BY_ID);
             pr.setDouble(1, entity.getBalance());

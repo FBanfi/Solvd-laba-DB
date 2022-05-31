@@ -18,7 +18,6 @@ public class ClientServiceImpl implements IJasonService {
         ObjectMapper om = new ObjectMapper();
         try {
             JavaType type = om.getTypeFactory().constructCollectionType(List.class, Client.class);
-            List<Client> clients;
             return om.readValue(new File(path), type);
         } catch (IOException e) {
             e.printStackTrace();

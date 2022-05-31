@@ -12,22 +12,22 @@
     </resultMap>
     <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
         <![CDATA[
-            Insert into Clients (name,lastName,doc,email) values (#{client.name},#{client.lastName},#{client.doc},#{client.email})
+            Insert into Clients (name,lastName,doc,email) values (#{name},#{lastName},#{doc},#{email})
         ]]>
     </insert>
     <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
         <![CDATA[
-            Update Clients set name=${client.name},lastName=${client.lastName},doc=${client.doc},email=${client.email} where id=${client.id}
+            Update Clients set name=${name},lastName=${lastName},doc=${doc},email=${email} where id=${id}
         ]]>
     </update>
     <delete id="removeEntity">
         <![CDATA[
-            Delete from Clients where id=${client.id}
+            Delete from Clients where id=${id}
         ]]>
     </delete>
     <select id="getEntityById" resultMap="ClientResultMap">
         <![CDATA[
-            Select * from Clients where id=${client.id}
+            Select * from Clients where id=${id}
         ]]>
     </select>
 </mapper>
