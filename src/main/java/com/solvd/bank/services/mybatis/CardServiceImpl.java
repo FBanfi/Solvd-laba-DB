@@ -6,6 +6,7 @@ import com.solvd.bank.services.ICardService;
 import com.solvd.bank.utils.connectionPool.DBPropertiesUtil;
 import com.solvd.bank.utils.connectionPool.IDBConstants;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -40,8 +41,10 @@ public class CardServiceImpl implements ICardService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      cardDAO = sqlSessionFactory.openSession().getMapper(ICardDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      cardDAO = session.getMapper(ICardDAO.class);
       cardDAO.saveEntity(card);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the insert statement with mybatis" + e);
       throw new RuntimeException(e);
@@ -54,8 +57,10 @@ public class CardServiceImpl implements ICardService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      cardDAO = sqlSessionFactory.openSession().getMapper(ICardDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      cardDAO = session.getMapper(ICardDAO.class);
       cardDAO.removeEntity(id);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the delete statement with mybatis" + e);
       throw new RuntimeException(e);
@@ -68,8 +73,10 @@ public class CardServiceImpl implements ICardService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      cardDAO = sqlSessionFactory.openSession().getMapper(ICardDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      cardDAO = session.getMapper(ICardDAO.class);
       cardDAO.updateEntity(id,cardWithNewValues);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the update statement with mybatis" + e);
       throw new RuntimeException(e);

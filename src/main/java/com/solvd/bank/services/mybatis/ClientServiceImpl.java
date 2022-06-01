@@ -1,11 +1,13 @@
 package com.solvd.bank.services.mybatis;
 
+import com.solvd.bank.dao.IAccountDAO;
 import com.solvd.bank.dao.IClientDAO;
 import com.solvd.bank.domain.Client;
 import com.solvd.bank.services.IClientService;
 import com.solvd.bank.utils.connectionPool.DBPropertiesUtil;
 import com.solvd.bank.utils.connectionPool.IDBConstants;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -40,8 +42,10 @@ public class ClientServiceImpl implements IClientService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      clientDAO = sqlSessionFactory.openSession().getMapper(IClientDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      clientDAO = session.getMapper(IClientDAO.class);
       clientDAO.saveEntity(client);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the insert statement with mybatis" + e);
       throw new RuntimeException(e);
@@ -54,8 +58,10 @@ public class ClientServiceImpl implements IClientService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      clientDAO = sqlSessionFactory.openSession().getMapper(IClientDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      clientDAO = session.getMapper(IClientDAO.class);
       clientDAO.removeEntity(id);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the delete statement with mybatis" + e);
       throw new RuntimeException(e);
@@ -68,8 +74,10 @@ public class ClientServiceImpl implements IClientService {
     try {
       Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      clientDAO = sqlSessionFactory.openSession().getMapper(IClientDAO.class);
+      SqlSession session = sqlSessionFactory.openSession();
+      clientDAO = session.getMapper(IClientDAO.class);
       clientDAO.updateEntity(id,client);
+      session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the update statement with mybatis" + e);
       throw new RuntimeException(e);
