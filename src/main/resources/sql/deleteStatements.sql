@@ -3,3 +3,8 @@ DELETE FROM Transactions WHERE destinationCBU=456456456;
 DELETE FROM Suscriptions WHERE service='Netflix';
 DELETE FROM Assistants WHERE name='Snape';
 DELETE FROM Managers WHERE idManagers<2;
+DELETE FROM Benefits WHERE idBenefits=3;
+DELETE FROM Phones WHERE number=42645645;
+DELETE FROM Investments WHERE description='Bitcoin';
+DELETE FROM Benefits WHERE benefit='Free Cinema Ticket';
+DELETE FROM Payments WHERE place='Burger King';
