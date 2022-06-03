@@ -18,13 +18,12 @@ import java.sql.SQLException;
 
 public class CardServiceImpl implements ICardService {
   private final static Logger LOGGER = LogManager.getLogger(CardServiceImpl.class);
-  private final static String MYBATIS_CONFIG = DBPropertiesUtil.getInstance().getString(IDBConstants.MYBATIS_CONFIG);
 
   @Override
   public Card getCard(long id) {
     ICardDAO cardDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       cardDAO = sqlSessionFactory.openSession().getMapper(ICardDAO.class);
       cardDAO.getEntityById(id);
@@ -39,7 +38,7 @@ public class CardServiceImpl implements ICardService {
   public void saveCard(Card card) {
     ICardDAO cardDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       cardDAO = session.getMapper(ICardDAO.class);
@@ -55,7 +54,7 @@ public class CardServiceImpl implements ICardService {
   public void deleteCard(long id) {
     ICardDAO cardDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       cardDAO = session.getMapper(ICardDAO.class);
@@ -71,7 +70,7 @@ public class CardServiceImpl implements ICardService {
   public void updateCardById(long id, Card cardWithNewValues) {
     ICardDAO cardDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       cardDAO = session.getMapper(ICardDAO.class);

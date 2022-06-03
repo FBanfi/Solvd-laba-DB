@@ -17,13 +17,12 @@ import java.sql.SQLException;
 
 public class ManagerServiceImpl implements IManagerService {
   private final static Logger LOGGER = LogManager.getLogger(ManagerServiceImpl.class);
-  private final static String MYBATIS_CONFIG = DBPropertiesUtil.getInstance().getString(IDBConstants.MYBATIS_CONFIG);
 
   @Override
   public Manager getManager(long id) {
     IManagerDAO managerDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       managerDAO = sqlSessionFactory.openSession().getMapper(IManagerDAO.class);
       managerDAO.getEntityById(id);

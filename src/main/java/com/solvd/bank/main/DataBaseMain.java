@@ -1,7 +1,6 @@
 package com.solvd.bank.main;
 
 import com.solvd.bank.domain.*;
-import com.solvd.bank.services.jasonService.ClientServiceImpl;
 import com.solvd.bank.services.mybatis.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,12 +11,12 @@ public class DataBaseMain {
     private static Logger LOGGER = LogManager.getLogger(DataBaseMain.class);
 
     public static void main(String[] args) {
-
+/**/
         //TAKING A RECORD FROM THE DATA BASE WITH CONNECTION POOL:
         //ACCOUNT SERVICE:
         AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
         //    SELECT - by Acc id
-        Account newAccount = accountServiceImpl.getAccount(1);
+        Account newAccount = accountServiceImpl.getAccount(2);
         LOGGER.info("The id of the account with the id 1 is: " + newAccount.getId());
         LOGGER.info("The balance of the account with the id 1 is: " + newAccount.getBalance());
         LOGGER.info("The alias of the account with the id 1 is: " + newAccount.getAlias());
@@ -43,7 +42,7 @@ public class DataBaseMain {
         accountServiceImpl.updateAccountById(1, updatedAccount);
 
         //CLIENT SERVICE:
-        com.solvd.bank.services.jdbcImpl.ClientServiceImpl clientServiceImpl = new com.solvd.bank.services.jdbcImpl.ClientServiceImpl();
+        ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
         //     SELECT - by client id
         Client newClient = clientServiceImpl.getClient(1);
         LOGGER.info("The id of the client with the id 1 is: " + newClient.getId());

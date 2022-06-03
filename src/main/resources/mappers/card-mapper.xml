@@ -9,23 +9,15 @@
         <association property="account" resultMap="com.solvd.bank.dao.IAccountDAO.AccountResultMap" />
     </resultMap>
     <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
-        <![CDATA[
             Insert into Cards number values (#{number})
-        ]]>
     </insert>
     <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
-        <![CDATA[
-            Update Cards set number=${number} where id=${id}
-        ]]>
+            Update Cards set number=${number} where idCards=${id}
     </update>
     <delete id="removeEntity">
-        <![CDATA[
-            Delete from Cards where id=${id}
-        ]]>
+            Delete from Cards where idCards=${id}
     </delete>
     <select id="getEntityById" resultMap="CardResultMap">
-        <![CDATA[
-            Select * from Cards where id=${id}
-        ]]>
+            Select * from Cards where idCards=${id}
     </select>
 </mapper>

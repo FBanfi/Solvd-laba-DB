@@ -17,13 +17,12 @@ import java.sql.SQLException;
 
 public class PhoneServiceImpl implements IPoneService {
   private final static Logger LOGGER = LogManager.getLogger(PhoneServiceImpl.class);
-  private final static String MYBATIS_CONFIG = DBPropertiesUtil.getInstance().getString(IDBConstants.MYBATIS_CONFIG);
 
   @Override
   public Phone getPhone(long id) {
     IPhoneDAO iPhoneDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       iPhoneDAO = sqlSessionFactory.openSession().getMapper(IPhoneDAO.class);
       iPhoneDAO.getEntityById(id);

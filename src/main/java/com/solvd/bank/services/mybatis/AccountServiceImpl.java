@@ -17,14 +17,13 @@ import java.io.Reader;
 import java.sql.SQLException;
 
 public class AccountServiceImpl implements IAccountService {
-  private final static Logger LOGGER = LogManager.getLogger(ClientServiceImpl.class);
-  private final static String MYBATIS_CONFIG = DBPropertiesUtil.getInstance().getString(IDBConstants.MYBATIS_CONFIG);
+  private final static Logger LOGGER = LogManager.getLogger(AccountServiceImpl.class);
 
   @Override
   public Account getAccount(long id) {
     IAccountDAO accountDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       accountDAO = sqlSessionFactory.openSession().getMapper(IAccountDAO.class);
       accountDAO.getEntityById(id);
@@ -39,7 +38,7 @@ public class AccountServiceImpl implements IAccountService {
   public void saveAccount(Account account) {
     IAccountDAO accountDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       accountDAO = session.getMapper(IAccountDAO.class);
@@ -55,7 +54,7 @@ public class AccountServiceImpl implements IAccountService {
   public void deleteAccount(long id) {
     IAccountDAO accountDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       accountDAO = session.getMapper(IAccountDAO.class);
@@ -71,7 +70,7 @@ public class AccountServiceImpl implements IAccountService {
   public void updateAccountById(long id, Account accountWithNewValues) {
     IAccountDAO accountDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       accountDAO = session.getMapper(IAccountDAO.class);

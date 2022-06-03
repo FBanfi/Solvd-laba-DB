@@ -19,13 +19,12 @@ import java.sql.SQLException;
 
 public class ClientServiceImpl implements IClientService {
   private final static Logger LOGGER = LogManager.getLogger(ClientServiceImpl.class);
-  private final static String MYBATIS_CONFIG = DBPropertiesUtil.getInstance().getString(IDBConstants.MYBATIS_CONFIG);
 
   @Override
   public Client getClient(long id) {
     IClientDAO clientDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       clientDAO = sqlSessionFactory.openSession().getMapper(IClientDAO.class);
       clientDAO.getEntityById(id);
@@ -40,7 +39,7 @@ public class ClientServiceImpl implements IClientService {
   public void saveClient(Client client) {
     IClientDAO clientDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       clientDAO = session.getMapper(IClientDAO.class);
@@ -56,7 +55,7 @@ public class ClientServiceImpl implements IClientService {
   public void deleteClient(long id) {
     IClientDAO clientDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       clientDAO = session.getMapper(IClientDAO.class);
@@ -72,7 +71,7 @@ public class ClientServiceImpl implements IClientService {
   public void updateClientById(long id, Client client) {
     IClientDAO clientDAO;
     try {
-      Reader reader = Resources.getResourceAsReader(MYBATIS_CONFIG);
+      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       clientDAO = session.getMapper(IClientDAO.class);
