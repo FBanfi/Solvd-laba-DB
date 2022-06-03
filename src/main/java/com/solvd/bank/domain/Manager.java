@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(name="manager")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Manager {
     @XmlAttribute(name = "id")
     private long id;
@@ -16,18 +17,15 @@ public class Manager {
     @XmlElement(name = "managerlname")
     private String lastName;
 
-    //@XmlElement(name="phone")
-    @XmlTransient
+    @XmlElement(name="phone")
     private Phone phone;
 
-    //@XmlElementWrapper(name="clients")
-    //@XmlElement(name="client", type=Client.class)
-    @XmlTransient
+    @XmlElementWrapper(name="clients")
+    @XmlElement(name="client", type=Client.class)
     private List<Client> Client = new ArrayList<>();
 
-    //@XmlElementWrapper(name="accounts")
-    //@XmlElement(name="account", type=Account.class)
-    @XmlTransient
+    @XmlElementWrapper(name="accounts")
+    @XmlElement(name="account", type=Account.class)
     private List<Account> accounts = new ArrayList<>();
 
     @XmlElement(name = "username")
