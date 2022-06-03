@@ -75,7 +75,7 @@ public class AccountServiceImpl implements IAccountService {
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       SqlSession session = sqlSessionFactory.openSession();
       accountDAO = session.getMapper(IAccountDAO.class);
-      accountDAO.updateEntity(id,accountWithNewValues);
+      accountDAO.updateEntity(id, accountWithNewValues);
       session.commit();
     } catch (IOException e) {
       LOGGER.info("There was a problem while trying to do the update statement with mybatis" + e);
