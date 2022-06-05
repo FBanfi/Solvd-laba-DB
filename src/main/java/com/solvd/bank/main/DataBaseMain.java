@@ -1,7 +1,6 @@
 package com.solvd.bank.main;
 
 import com.solvd.bank.domain.*;
-//import com.solvd.bank.services.jasonService.ClientServiceImpl;
 import com.solvd.bank.services.mybatis.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,17 +75,16 @@ public class DataBaseMain {
         LOGGER.info("The id of the phone with the id 1 is: " + newPhone.getId());
         LOGGER.info("The number of the phone with the id 1 is: " + newPhone.getNumber());
 
-/*
-        //DES-SERIALIZING A XML FILE WITH JAXB:            ---------> IMPORTANT, NOW IT DOES NOT WORK BECAUSE I USED THE ANNOTATIONS OF JSON HOMETASK
-        ManagerServiceImpl jaxbService = new ManagerServiceImpl();
+
+        //DES-SERIALIZING A XML FILE WITH JAXB:
+        com.solvd.bank.services.jaxbImpl.ManagerServiceImpl jaxbService = new com.solvd.bank.services.jaxbImpl.ManagerServiceImpl();
         Manager serializedManager = jaxbService.unmarshall("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\serialized-manager.xml");
-        LOGGER.info("The name of the manager is: " + serializedManager.getName() + "and the date of birth of his 1 client is: " + serializedManager.getClient().remove(1).getDateOfBirth());
+        LOGGER.info("The name of the manager is: " + serializedManager.getName() + " and the date of birth of his 1 client is: " + serializedManager.getClient().remove(1).getDateOfBirth());
 
-
-        //DES-SERIALIZING A JSON FILE:  // It works but you need to change the import to  jsonService!
-        ClientServiceImpl clientService = new ClientServiceImpl();
+        //DES-SERIALIZING A JSON FILE:
+        com.solvd.bank.services.jasonService.ClientServiceImpl clientService = new com.solvd.bank.services.jasonService.ClientServiceImpl();
         List<Client> clients = clientService.getDeSerializedClient("C:\\Users\\cocob\\IdeaProjects\\Solvd-laba-DB\\src\\main\\resources\\client.json");
         LOGGER.info("The name of the first client of the jason file is: " + clients.get(1).getName());
-*/
+
     }
 }
