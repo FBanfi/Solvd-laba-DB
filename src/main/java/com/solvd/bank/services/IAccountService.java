@@ -1,6 +1,7 @@
 package com.solvd.bank.services;
 
 import com.solvd.bank.domain.Account;
+import org.apache.ibatis.annotations.Param;
 
 public interface IAccountService {
     Account getAccount(long id);

@@ -22,7 +22,7 @@ public class Manager {
 
     @XmlElementWrapper(name="clients")
     @XmlElement(name="client", type=Client.class)
-    private List<Client> Client = new ArrayList<>();
+    private List<Client> clients = new ArrayList<>();
 
     @XmlElementWrapper(name="accounts")
     @XmlElement(name="account", type=Account.class)
@@ -78,11 +78,11 @@ public class Manager {
     }
 
     public List<Client> getClient() {
-        return Client;
+        return clients;
     }
 
-    public void setClient(List<com.solvd.bank.domain.Client> client) {
-        Client = client;
+    public void setClient(List<Client> clients) {
+        this.clients = clients;
     }
 
     public List<Account> getAccounts() {
@@ -151,7 +151,7 @@ public class Manager {
             ", name='" + name + '\'' +
             ", lastName='" + lastName + '\'' +
             ", phone=" + phone +
-            ", Client=" + Client +
+            ", Client=" + clients +
             ", accounts=" + accounts +
             ", username='" + username + '\'' +
             ", password='" + password + '\'' +

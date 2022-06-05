@@ -26,12 +26,11 @@ public class CardServiceImpl implements ICardService {
       Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       cardDAO = sqlSessionFactory.openSession().getMapper(ICardDAO.class);
-      cardDAO.getEntityById(id);
+      return cardDAO.getEntityById(id);
     } catch (SQLException | IOException | ClassNotFoundException e) {
       LOGGER.info("There was a problem while trying to do the select statement with mybatis" + e);
       throw new RuntimeException(e);
     }
-    return null;
   }
 
   @Override

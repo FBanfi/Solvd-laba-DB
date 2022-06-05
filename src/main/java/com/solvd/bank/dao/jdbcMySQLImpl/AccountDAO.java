@@ -13,7 +13,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
     private final static String SELECT_BALANCE_BY_ACCOUNT_ID = "SELECT * FROM Accounts WHERE idAccounts=?";
     private final static String SELECT_BALANCE_BY_USER_ID = "SELECT * FROM Accounts WHERE alias=?";
     private final static String DELETE_ACCOUNT_BY_ID = "DELETE FROM Accounts WHERE idAccounts=?";
-    private final static String UPDATE_ACCOUNT_BY_ID = "UPDATE Accounts SET balance=?, cbu=?, alias=? WHERE idAccounts=?";
+    private final static String UPDATE_ACCOUNT_BY_ID = "UPDATE Accounts SET balance=?, cbu=? WHERE idAccounts=?";
     private final static String INSERT_ACCOUNT = "INSERT INTO Cards (balance,cbu,alias) VALUES (?,?,?)";
 
     @Override
@@ -85,11 +85,10 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
             pr = con.prepareStatement(UPDATE_ACCOUNT_BY_ID);
             pr.setDouble(1, entity.getBalance());
             pr.setDouble(2, entity.getCbu());
-            pr.setString(3, entity.getAlias());
-            pr.setLong(4, id);
+            pr.setLong(3, id);
             pr.execute();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
+            LOGGER.error("There was a problem while doing the statement" + e);
             throw new RuntimeException(e);
         }
         finally {

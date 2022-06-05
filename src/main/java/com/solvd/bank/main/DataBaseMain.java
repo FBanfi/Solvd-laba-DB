@@ -3,12 +3,6 @@ package com.solvd.bank.main;
 import com.solvd.bank.domain.*;
 //import com.solvd.bank.services.jasonService.ClientServiceImpl;
 import com.solvd.bank.services.mybatis.*;
-import com.solvd.bank.services.jdbcImpl.*;
-import com.solvd.bank.services.mybatis.AccountServiceImpl;
-import com.solvd.bank.services.mybatis.CardServiceImpl;
-import com.solvd.bank.services.mybatis.ClientServiceImpl;
-import com.solvd.bank.services.mybatis.ManagerServiceImpl;
-import com.solvd.bank.services.mybatis.PhoneServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
@@ -28,12 +22,6 @@ public class DataBaseMain {
         LOGGER.info("The balance of the account with the id 1 is: " + newAccount.getBalance());
         LOGGER.info("The alias of the account with the id 1 is: " + newAccount.getAlias());
         LOGGER.info("The cbu of the account with the id 1 is: " + newAccount.getCbu());
-        //     SELECT - by usr id
-        Account account2 = accountServiceImpl.getAccountByAlias("abadakadabra");
-        LOGGER.info("The id of the account with the alias abadakadabra is: " + account2.getId());
-        LOGGER.info("The balance of the account with the alias abadakadabra is: " + account2.getBalance());
-        LOGGER.info("The alias of the account with the alias abadakadabra is: " + account2.getAlias());
-        LOGGER.info("The cbu of the account with the alias abadakadabra is: " + account2.getCbu());
         //    INSERT
         newAccount.setBalance(123);
         newAccount.setCbu(123);
@@ -45,7 +33,6 @@ public class DataBaseMain {
         Account updatedAccount = new Account();
         updatedAccount.setBalance(987987);
         updatedAccount.setCbu(987);
-        updatedAccount.setAlias("abadakadabra");
         accountServiceImpl.updateAccountById(1, updatedAccount);
 
         //CLIENT SERVICE:
@@ -56,12 +43,6 @@ public class DataBaseMain {
         LOGGER.info("The name of the account with the id 1 is: " + newClient.getName());
         LOGGER.info("The last name of the account with the id 1 is: " + newClient.getLastName());
         LOGGER.info("The date of birth of the account with the id 1 is: " + newClient.getDateOfBirth());
-        //     SELECT - by name
-        Client client2 = clientServiceImpl.getClientByLastName("Potter");
-        LOGGER.info("The id of the client with the name Harry 1 is: " + client2.getId());
-        LOGGER.info("The name of the account with the last name Harry is: " + client2.getName());
-        LOGGER.info("The last name of the account with the last name Harry is: " + client2.getLastName());
-        LOGGER.info("The date of birth of the account with the last name Harry is: " + client2.getDateOfBirth());
 
         //CARD SERVICE:
         CardServiceImpl cardServiceImpl = new CardServiceImpl();
@@ -69,10 +50,6 @@ public class DataBaseMain {
         Card newCard = cardServiceImpl.getCard(1);
         LOGGER.info("The id of the card with the id 1 is: " + newCard.getId());
         LOGGER.info("The last number of the card with the id 1 is: " + newCard.getNumber());
-        //    SELECT - by card id
-        Card card2 = cardServiceImpl.getCardByAccount(1);
-        LOGGER.info("The id of the card with the account 1 is: " + card2.getId());
-        LOGGER.info("The last number of the card with the account 1 is: " + card2.getNumber());
         //    INSERT
         newCard.setNumber(137946825);
         newCard.setAccount(newAccount);

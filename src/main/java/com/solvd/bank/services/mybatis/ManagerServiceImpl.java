@@ -25,12 +25,11 @@ public class ManagerServiceImpl implements IManagerService {
       Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       managerDAO = sqlSessionFactory.openSession().getMapper(IManagerDAO.class);
-      managerDAO.getEntityById(id);
+      return managerDAO.getEntityById(id);
     } catch (IOException | SQLException | ClassNotFoundException e) {
       LOGGER.info("There was a problem while trying to do the select statement with mybatis" + e);
       throw new RuntimeException(e);
     }
-    return null;
   }
 
   @Override

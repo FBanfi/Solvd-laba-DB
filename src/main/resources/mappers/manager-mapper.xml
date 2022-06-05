@@ -13,8 +13,8 @@
     <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
             Insert into Managers (name,lastName,username) values (#{name},#{lastName},#{username})
     </insert>
-    <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
-            Update Managers set name=${name},lastName=${lastName},username=${username} where idManagers=${id}
+    <update id="updateEntity" useGeneratedKeys="true" keyProperty="id, entity">
+            Update Managers set name=${entity.name},lastName=${entity.lastName},username=${entity.username} where idManagers=${id}
     </update>
     <delete id="removeEntity">
             Delete from Managers where idManagers=${id}

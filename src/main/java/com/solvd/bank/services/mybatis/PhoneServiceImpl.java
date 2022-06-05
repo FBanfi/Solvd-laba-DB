@@ -25,12 +25,11 @@ public class PhoneServiceImpl implements IPoneService {
       Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       iPhoneDAO = sqlSessionFactory.openSession().getMapper(IPhoneDAO.class);
-      iPhoneDAO.getEntityById(id);
+      return iPhoneDAO.getEntityById(id);
     } catch (IOException | SQLException | ClassNotFoundException e) {
       LOGGER.info("There was a problem while trying to do the select statement with mybatis" + e);
       throw new RuntimeException(e);
     }
-    return null;
   }
 
   @Override

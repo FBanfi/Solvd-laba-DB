@@ -27,12 +27,11 @@ public class ClientServiceImpl implements IClientService {
       Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
       clientDAO = sqlSessionFactory.openSession().getMapper(IClientDAO.class);
-      clientDAO.getEntityById(id);
+      return clientDAO.getEntityById(id);
     } catch (IOException | SQLException | ClassNotFoundException e) {
       LOGGER.info("There was a problem while trying to do the select statement with mybatis" + e);
       throw new RuntimeException(e);
     }
-    return null;
   }
 
   @Override

@@ -7,13 +7,12 @@
         <id column="id" property="id" />
         <result column="balance" property="balance" />
         <result column="cbu" property="cbu" />
-        <result column="alias" property="alias" />
     </resultMap>
-    <insert id="saveEntity" useGeneratedKeys="true" keyProperty="true">
+    <insert id="saveEntity" useGeneratedKeys="true" keyProperty="id">
             Insert into Accounts (balance,cbu,alias) values (#{balance},#{cbu},#{alias})
     </insert>
-    <update id="updateEntity" useGeneratedKeys="true" keyProperty="true">
-            Update Accounts set balance=${balance},cbu=${cbu},alias=${alias} where idAccounts=${id}
+    <update id="updateEntity" useGeneratedKeys="true" keyProperty="id, entity">
+            Update Accounts set balance=${entity.balance},cbu=${entity.cbu} where idAccounts=${id}
     </update>
     <delete id="removeEntity">
             Delete from Accounts where idAccounts=${id}
