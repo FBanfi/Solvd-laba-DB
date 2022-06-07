@@ -1,5 +1,6 @@
 package com.solvd.bank.utils.connectionPool;
 
+import com.solvd.bank.exceptions.ConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +25,7 @@ public class ConnectionPool {
         try {
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Driver was not loaded properly", e);
-            throw new RuntimeException(e);
+            throw new ConnectionException("Driver was not loaded properly" + e);
         }
     }
 
