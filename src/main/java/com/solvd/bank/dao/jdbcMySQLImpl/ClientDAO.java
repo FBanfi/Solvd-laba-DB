@@ -3,6 +3,7 @@ package com.solvd.bank.dao.jdbcMySQLImpl;
 import com.solvd.bank.dao.IClientDAO;
 import com.solvd.bank.domain.Card;
 import com.solvd.bank.domain.Client;
+import com.solvd.bank.exceptions.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,8 +37,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
 
             return client;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -47,8 +47,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 if (rs != null)
                     rs.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -67,8 +66,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
             pr = con.prepareStatement(query);
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -76,8 +74,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -95,8 +92,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
             pr.setLong(5, id);
             pr.execute();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -104,8 +100,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -119,8 +114,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
             pr.setLong(1, id);
             pr.execute();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -128,8 +122,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -152,8 +145,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
 
             return client;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -163,8 +155,7 @@ public class ClientDAO extends AbstractDAO implements IClientDAO {
                 if (rs != null)
                     rs.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }

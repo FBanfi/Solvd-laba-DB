@@ -2,6 +2,7 @@ package com.solvd.bank.dao.jdbcMySQLImpl;
 
 import com.solvd.bank.dao.ICardDAO;
 import com.solvd.bank.domain.Card;
+import com.solvd.bank.exceptions.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,8 +34,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
 
             return card;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -44,8 +44,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
                 if (rs != null)
                     rs.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -61,8 +60,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
             pr = con.prepareStatement(query);
             pr.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -70,8 +68,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -86,8 +83,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
             pr.setLong(2, id);
             pr.execute();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -95,8 +91,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -110,8 +105,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
             pr.setLong(1, id);
             pr.execute();
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -119,8 +113,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
                 if (pr != null)
                     pr.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
@@ -141,8 +134,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
 
             return card;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -152,8 +144,7 @@ public class CardDAO extends AbstractDAO implements ICardDAO {
                 if (rs != null)
                     rs.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }

@@ -6,6 +6,7 @@ import com.solvd.bank.dao.jdbcMySQLImpl.AccountDAO;
 import com.solvd.bank.dao.jdbcMySQLImpl.ClientDAO;
 import com.solvd.bank.domain.Account;
 import com.solvd.bank.domain.Client;
+import com.solvd.bank.exceptions.ServiceException;
 import com.solvd.bank.services.IClientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +26,7 @@ public class ClientServiceImpl implements IClientService {
             clientToReturn = clientDAO.getEntityById(id);
 
         } catch (IOException | SQLException | ClassNotFoundException e) {
-            LOGGER.error("There was an error with the service of the client", e);
-            throw new RuntimeException(e);
+            throw new ServiceException("There was an error with the service of the client" + e);
         }
 
         return clientToReturn;

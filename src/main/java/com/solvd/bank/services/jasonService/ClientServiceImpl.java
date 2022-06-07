@@ -21,7 +21,6 @@ public class ClientServiceImpl implements IJasonService {
             JavaType type = om.getTypeFactory().constructCollectionType(List.class, Client.class);
             return om.readValue(new File(path), type);
         } catch (IOException e) {
-            e.printStackTrace();
             throw new ServiceException("There was an error while des serializing the client" + e);
         }
     }

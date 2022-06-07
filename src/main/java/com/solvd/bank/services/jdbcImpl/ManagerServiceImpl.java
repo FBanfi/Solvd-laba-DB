@@ -3,6 +3,7 @@ package com.solvd.bank.services.jdbcImpl;
 import com.solvd.bank.dao.IManagerDAO;
 import com.solvd.bank.dao.jdbcMySQLImpl.ManagerDAO;
 import com.solvd.bank.domain.Manager;
+import com.solvd.bank.exceptions.ServiceException;
 import com.solvd.bank.services.IManagerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,7 @@ public class ManagerServiceImpl implements IManagerService {
             managerToReturn = managerDAO.getEntityById(id);
 
         } catch (IOException | SQLException | ClassNotFoundException e) {
-            LOGGER.error("There was an error with the service of the manager", e);
-            throw new RuntimeException(e);
+            throw new ServiceException("There was an error with the service of the manager" + e);
         }
 
         return managerToReturn;

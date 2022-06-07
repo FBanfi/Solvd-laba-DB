@@ -3,6 +3,7 @@ package com.solvd.bank.services.jdbcImpl;
 import com.solvd.bank.dao.IAccountDAO;
 import com.solvd.bank.dao.jdbcMySQLImpl.AccountDAO;
 import com.solvd.bank.domain.Account;
+import com.solvd.bank.exceptions.ServiceException;
 import com.solvd.bank.services.IAccountService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,7 @@ public class AccountServiceImpl implements IAccountService {
             accountToReturn = accountDAO.getEntityById(id);
 
         } catch (IOException | SQLException | ClassNotFoundException e) {
-            LOGGER.error("There was an error with the service of the account", e);
-            throw new RuntimeException(e);
+            throw new ServiceException("There was an error with the service of the account" + e);
         }
 
         return accountToReturn;

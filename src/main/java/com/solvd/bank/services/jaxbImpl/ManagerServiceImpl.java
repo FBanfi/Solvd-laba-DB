@@ -1,6 +1,7 @@
 package com.solvd.bank.services.jaxbImpl;
 
 import com.solvd.bank.domain.Manager;
+import com.solvd.bank.exceptions.ServiceException;
 import com.solvd.bank.services.IJaxbService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,7 @@ public class ManagerServiceImpl implements IJaxbService {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             return (Manager) unmarshaller.unmarshal(xmlFile);
         } catch (JAXBException e) {
-            LOGGER.error("There was an error with jaxb library", e);
-            throw new RuntimeException(e);
+            throw new ServiceException("There was an error with jaxb library" + e);
         }
     }
 
@@ -34,8 +34,7 @@ public class ManagerServiceImpl implements IJaxbService {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.marshal(manager, new File(xmlResultPath));
         } catch (JAXBException e) {
-            LOGGER.error("There was an error with jaxb library", e);
-            throw new RuntimeException(e);
+            throw new ServiceException("There was an error with jaxb library" + e);
         }
     }
 }

@@ -139,8 +139,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
 
             return account;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new RuntimeException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);
@@ -150,8 +149,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
                 if (rs != null)
                     rs.close();
             } catch (SQLException e) {
-                LOGGER.error("Exception while closing the statement", e);
-                throw new RuntimeException(e);
+                throw new DAOException("Exception while closing the statement" + e);
             }
         }
     }
