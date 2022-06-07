@@ -2,6 +2,7 @@ package com.solvd.bank.services.mybatis;
 
 import com.solvd.bank.dao.IAccountDAO;
 import com.solvd.bank.domain.Account;
+import com.solvd.bank.exceptions.ServiceException;
 import com.solvd.bank.services.IAccountService;
 import com.solvd.bank.utils.connectionPool.DBPropertiesUtil;
 import com.solvd.bank.utils.connectionPool.IDBConstants;
@@ -16,68 +17,42 @@ import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
 
-public class AccountServiceImpl implements IAccountService {
-  private final static Logger LOGGER = LogManager.getLogger(AccountServiceImpl.class);
+public class AccountServiceImpl extends AbstractSQLSession implements IAccountService {
 
   @Override
   public Account getAccount(long id) {
-    IAccountDAO accountDAO;
-    try {
-      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
-      SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      accountDAO = sqlSessionFactory.openSession().getMapper(IAccountDAO.class);
+    try(SqlSession session = getSession()) {
+      IAccountDAO accountDAO = session.getMapper(IAccountDAO.class);
       return accountDAO.getEntityById(id);
     } catch (SQLException | IOException | ClassNotFoundException e) {
-      LOGGER.info("There was a problem while trying to do the select statement with mybatis" + e);
-      throw new RuntimeException(e);
+      throw new ServiceException("There was an error using mybatis service: " + e);
     }
   }
 
   @Override
   public void saveAccount(Account account) {
-    IAccountDAO accountDAO;
-    try {
-      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
-      SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      SqlSession session = sqlSessionFactory.openSession();
-      accountDAO = session.getMapper(IAccountDAO.class);
+    try(SqlSession session = getSession()) {
+      IAccountDAO accountDAO = session.getMapper(IAccountDAO.class);
       accountDAO.saveEntity(account);
       session.commit();
-    } catch (IOException e) {
-      LOGGER.info("There was a problem while trying to do the insert statement with mybatis" + e);
-      throw new RuntimeException(e);
     }
   }
 
   @Override
   public void deleteAccount(long id) {
-    IAccountDAO accountDAO;
-    try {
-      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
-      SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      SqlSession session = sqlSessionFactory.openSession();
-      accountDAO = session.getMapper(IAccountDAO.class);
+    try(SqlSession session = getSession()) {
+      IAccountDAO accountDAO = session.getMapper(IAccountDAO.class);
       accountDAO.removeEntity(id);
       session.commit();
-    } catch (IOException e) {
-      LOGGER.info("There was a problem while trying to do the delete statement with mybatis" + e);
-      throw new RuntimeException(e);
     }
   }
 
   @Override
   public void updateAccountById(long id, Account accountWithNewValues) {
-    IAccountDAO accountDAO;
-    try {
-      Reader reader = Resources.getResourceAsReader(IDBConstants.MYBATIS_CONFIG);
-      SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-      SqlSession session = sqlSessionFactory.openSession();
-      accountDAO = session.getMapper(IAccountDAO.class);
-      accountDAO.updateEntity(id, accountWithNewValues);
+    try(SqlSession session = getSession()) {
+      IAccountDAO accountDAO = session.getMapper(IAccountDAO.class);
+      accountDAO.updateEntity(id,accountWithNewValues);
       session.commit();
-    } catch (IOException e) {
-      LOGGER.info("There was a problem while trying to do the update statement with mybatis" + e);
-      throw new RuntimeException(e);
     }
   }
 
