@@ -35,8 +35,7 @@ public class AccountDAO extends AbstractDAO implements IAccountDAO {
 
             return account;
         } catch (SQLException e) {
-            LOGGER.error("There was a problem while doing the statement");
-            throw new DAOException(e);
+            throw new DAOException("There was a problem while doing the statement" + e);
         }
         finally {
             returnConnection(con);

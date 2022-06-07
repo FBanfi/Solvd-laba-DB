@@ -11,7 +11,7 @@ public class DataBaseMain {
     private static Logger LOGGER = LogManager.getLogger(DataBaseMain.class);
 
     public static void main(String[] args) {
-/**/
+
         //TAKING A RECORD FROM THE DATA BASE WITH CONNECTION POOL:
         //ACCOUNT SERVICE:
         AccountServiceImpl accountServiceImpl = new AccountServiceImpl();
